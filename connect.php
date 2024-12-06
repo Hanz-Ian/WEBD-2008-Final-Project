@@ -1,6 +1,13 @@
 <?php
+
+/****************      
+    Name: Hanz Samonte
+    Date:  December 5, 2024
+    Description: Final Project - Connect to PHP Database  
+****************/
+
 define('DB_DSN', 'mysql:host=localhost;dbname=vintage_archives;charset=utf8');
-define('DB_USER', 'serveruser');
+define('DB_USER', 'va_admin');
 define('DB_PASS', 'gorgonzola7!');
 
 // PDO is PHP Data Objects
@@ -13,7 +20,7 @@ try {
     // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     print "Error: " . $e->getMessage();
-    die(); // Force execution to stop on errors.
+    die(); // Force execution to stop on error  s.
     // When deploying to production you should handle this
     // situation more gracefully. ¯\_(ツ)_/¯
 }
