@@ -5,6 +5,7 @@
     Date:  December 5, 2024
     Description: Final Project - Create Product  
 ****************/
+session_start();
 require 'connect.php';
 
 
