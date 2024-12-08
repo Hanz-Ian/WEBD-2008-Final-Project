@@ -1,10 +1,10 @@
 <?php
-
 /****************      
     Name: Hanz Samonte
     Date:  December 5, 2024
     Description: Final Project - Create Product  
 ****************/
+
 session_start();
 require 'connect.php';
 
@@ -55,7 +55,6 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     exit();
     
 }
-
 ?>
 
 
@@ -67,48 +66,48 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     <title>Create New Product</title>
 </head>
 <body>
-<h1>Create New Product</h1>
+    <h1>Create New Product</h1>
     <form action="create_product.php" method="post">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
-        
+            
         <br><br>
-        
+            
         <label for="brand">Brand:</label>
         <input type="text" id="brand" name="brand" required>
-        
+            
         <br><br>
-        
+            
         <label for="description">Description:</label>
         <textarea id="description" name="description" required></textarea>
-        
+            
         <br><br>
-        
+            
         <label for="size">Size:</label>
         <input type="text" id="size" name="size" required>
-        
+            
         <br><br>
-        
+            
         <label for="price">Price:</label>
         <input type="number" step="0.01" id="price" name="price" required>
-        
+            
         <br><br>
-        
+            
         <label for="stock">Stock:</label>
         <input type="number" id="stock" name="stock" required>
-        
+            
         <br><br>
-        
+            
         <label for="style">Style:</label>
         <input type="text" id="style" name="style" required>
-        
+            
         <br><br>
-        
+            
         <label for="category">Category:</label>
         <input type="text" id="category" name="category" required>
-        
+            
         <br><br>
-        
+            
         <input type="submit" value="Create Product">
     </form>
 </body>

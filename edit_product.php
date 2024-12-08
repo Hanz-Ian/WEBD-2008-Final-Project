@@ -1,4 +1,10 @@
 <?php
+/****************      
+    Name: Hanz Samonte
+    Date:  December 5, 2024
+    Description: Final Project - Edit Product  
+****************/
+
 session_start();
 require 'connect.php';
 
@@ -56,7 +62,8 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
     // Redirect to the home page
     header("Location: index.php");
     exit();
-} else if (isset($_GET['id'])) {
+} 
+else if (isset($_GET['id'])) {
     // Retrieve product to be edited, if id GET parameter is in URL
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
@@ -73,7 +80,8 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
         header("Location: index.php");
         exit();
     }
-} else {
+} 
+else {
     $id = false; // False if we are not UPDATING or SELECTING
 }
 ?>

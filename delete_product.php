@@ -1,4 +1,10 @@
 <?php
+/****************      
+    Name: Hanz Samonte
+    Date:  December 5, 2024
+    Description: Final Project - Delete Product  
+****************/
+
 session_start();
 require 'connect.php';
 
@@ -43,8 +49,9 @@ if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
     // Redirect to the home page
     header("Location: index.php");
     exit();
-} elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
-    // Redirect to the home page without deleting
+} 
+// Redirect to the home page if user chooses not to delete
+elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
     header("Location: index.php");
     exit();
 }
@@ -64,6 +71,7 @@ if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
     <?php if ($product['image']): ?>
         <p><strong>Image:</strong><br><img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" width="100"></p>
     <?php endif; ?>
+    
     <p>Are you sure you want to delete the following product?</p>
     <p><strong>Name:</strong> <?= $product['name'] ?></p>
     <p><strong>Brand:</strong> <?= $product['brand'] ?></p>
