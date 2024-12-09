@@ -94,6 +94,9 @@ else {
     <title>Edit <?= "{$product['name']}" ?></title>
 </head>
 <body>
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
+
     <h1>Edit Product</h1>
     <?php if ($id): ?>
         <form action="edit_product.php?id=<?= $product['item_id'] ?>" method="post">

@@ -48,6 +48,9 @@ if ($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
     <?php if (isset($error_message)): ?>
         <p><?= [$error_message] ?></p>
     <?php endif; ?>
+
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
     
     <form action="login.php" method="post">
         <label for="username">Username:</label>

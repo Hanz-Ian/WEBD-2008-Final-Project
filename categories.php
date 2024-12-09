@@ -28,6 +28,9 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
         <a href="logout.php" class="logout-button">Logout</a>
     <?php endif; ?>
 
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
+
     <h1>Categories</h1>
     <ul>
         <?php foreach ($categories as $category): ?>

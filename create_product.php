@@ -66,6 +66,9 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     <title>Create New Product</title>
 </head>
 <body>
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
+    
     <h1>Create New Product</h1>
     <form action="create_product.php" method="post">
         <label for="name">Name:</label>

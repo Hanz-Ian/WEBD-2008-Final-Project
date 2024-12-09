@@ -69,6 +69,9 @@ else {
     <title>Edit <?= "{$category['name']}" ?></title>
 </head>
 <body>
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
+    
     <h1>Edit Category</h1>
     <?php if ($category_id): ?>
         <form action="edit_category.php?id=<?= $category['category_id'] ?>" method="post">

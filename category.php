@@ -61,6 +61,9 @@ else {
         <a href="logout.php" class="logout-button">Logout</a>
     <?php endif; ?>
 
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
+
     <h1>Category: <?= $category['name'] ?></h1>
     <table>
         <tr>

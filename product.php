@@ -73,6 +73,10 @@ $total_reviews = $statement->fetchColumn();
     <title><?= $product['name'] ?> - Vintage Archives</title>
 </head>
 <body>
+
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
+    
     <!-- Show product if it exists -->
     <?php if ($product): ?>
         <!-- Show product's image if it exists -->

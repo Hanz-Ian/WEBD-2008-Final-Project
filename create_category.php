@@ -46,6 +46,9 @@ if ($_POST && !empty($_POST['name'])) {
     <title>Create New Category</title>
 </head>
 <body>
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
+    
     <h1>Create Category</h1>
     <form action="create_category.php" method="post">
         <label for="name">Category Name:</label>

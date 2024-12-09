@@ -65,8 +65,10 @@ elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
     <title>Delete <?= "{$product['name']}" ?></title>
 </head>
 <body>
+    <!-- Search form -->
+    <?php include 'search_form.php'; ?>
+    
     <h1>Delete Product</h1>
-
     <!-- Show image if it exists within the item -->
     <?php if ($product['image']): ?>
         <p><strong>Image:</strong><br><img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" width="100"></p>
