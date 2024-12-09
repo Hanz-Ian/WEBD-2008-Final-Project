@@ -1,7 +1,7 @@
 <?php
 /****************      
     Name: Hanz Samonte
-    Date:  December 7, 2024
+    Date:  December 8, 2024
     Description: Final Project - Search Results
 ****************/
 
