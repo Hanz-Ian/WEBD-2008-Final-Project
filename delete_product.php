@@ -17,7 +17,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 // Fetch the product details
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM items WHERE item_id = :id";
+    $query = "SELECT items.*, categories.name AS category_name FROM items 
+              JOIN categories ON items.category_id = categories.category_id 
+              WHERE items.item_id = :id";
     $statement = $db->prepare($query);
     $statement->bindValue(':id', $id, PDO::PARAM_INT);
     $statement->execute();
@@ -42,7 +44,8 @@ if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
     // Execute the Delete
     if ($statement->execute()) {
         $_SESSION['delete_success'] = "Product '{$product['name']}' has been deleted successfully!";
-    } else {
+    } 
+    else {
         $_SESSION['delete_error'] = "Error: Could not delete product.";
     }
 
@@ -81,7 +84,7 @@ elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
     <p><strong>Size:</strong> <?= htmlspecialchars($product['size']) ?></p>
     <p><strong>Price:</strong> <?= htmlspecialchars($product['price']) ?></p>
     <p><strong>Style:</strong> <?= htmlspecialchars($product['style']) ?></p>
-    <p><strong>Category:</strong> <?= htmlspecialchars($product['category']) ?></p>
+    <p><strong>Category:</strong> <?= htmlspecialchars($product['category_name']) ?></p>
 
     <!-- "Yes" form -->
     <form action="delete_product.php?id=<?= $product['item_id'] ?>" method="post">

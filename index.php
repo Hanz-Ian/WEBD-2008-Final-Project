@@ -70,7 +70,6 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
             <th>Size</th>
             <th>Price</th>
             <th>Category</th>
-            <th>Actions</th>
         </tr>
         <?php foreach ($products as $product): ?>
             <tr>
@@ -83,8 +82,7 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
                     <!-- If is admin, it's able to edit/delete products -->
                     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
                         <a href="edit_product.php?id=<?= $product['item_id'] ?>">Edit</a>
-                        <a href="delete_product.php?id=<?= $product['item_id'] ?>" 
-                        onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                        <a href="delete_product.php?id=<?= $product['item_id'] ?>">Delete</a>
                     <?php endif; ?>
                 </td>
             </tr>
