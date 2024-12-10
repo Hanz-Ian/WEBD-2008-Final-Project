@@ -80,7 +80,6 @@ elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
     <p><strong>Description:</strong> <?= htmlspecialchars($product['description']) ?></p>
     <p><strong>Size:</strong> <?= htmlspecialchars($product['size']) ?></p>
     <p><strong>Price:</strong> <?= htmlspecialchars($product['price']) ?></p>
-    <p><strong>Stock:</strong> <?= htmlspecialchars($product['stock']) ?></p>
     <p><strong>Style:</strong> <?= htmlspecialchars($product['style']) ?></p>
     <p><strong>Category:</strong> <?= htmlspecialchars($product['category']) ?></p>
 

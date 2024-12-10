@@ -38,16 +38,15 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
 // Check if edited product contents are set
 if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['description']) 
 && isset($_POST['size']) && isset($_POST['price']) && isset($_POST['style']) && isset($_POST['category_id']) 
-&& isset($_POST['stock']) && isset($_POST['id']) && !empty($_POST['name']) && !empty($_POST['brand']) 
+&& isset($_POST['id']) && !empty($_POST['name']) && !empty($_POST['brand']) 
 && !empty($_POST['description']) && !empty($_POST['size']) && !empty($_POST['price']) 
-&& !empty($_POST['style']) && !empty($_POST['category_id']) && !empty($_POST['stock'])) {
+&& !empty($_POST['style']) && !empty($_POST['category_id'])) {
     // Sanitize user input to escape HTML entities and filter out dangerous characters
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $size = filter_input(INPUT_POST, 'size', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $stock = filter_input(INPUT_POST, 'stock', FILTER_SANITIZE_NUMBER_INT);
     $style = filter_input(INPUT_POST, 'style', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category_id = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_NUMBER_INT);
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
@@ -92,7 +91,7 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
 
     // Build the parameterized SQL query and bind to the above sanitized values.
     $query = "UPDATE items SET name = :name, brand = :brand, description = :description, size = :size, 
-    price = :price, stock = :stock, style = :style, category_id = :category_id, 
+    price = :price, style = :style, category_id = :category_id, 
     image = :image WHERE item_id = :id";
     $statement = $db->prepare($query);
 
@@ -102,7 +101,6 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
     $statement->bindValue(':description', $description);
     $statement->bindValue(':size', $size);
     $statement->bindValue(':price', $price);
-    $statement->bindValue(':stock', $stock);
     $statement->bindValue(':style', $style);
     $statement->bindValue(':category_id', $category_id);
     $statement->bindValue(':image', $image_filename);
@@ -198,11 +196,6 @@ else {
             <label for="price">Price:</label>
             <input type="number" step="0.01" id="price" name="price" value="<?= htmlspecialchars($product['price']) ?>" required>
                 
-            <br><br>
-                
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" value="<?= htmlspecialchars($product['stock']) ?>" required>
-            
             <br><br>
                 
             <label for="style">Style:</label>
