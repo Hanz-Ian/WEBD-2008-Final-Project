@@ -10,7 +10,7 @@ require_once 'connect.php';
 $query = "SELECT * FROM categories ORDER BY name ASC";
 $statement = $db->prepare($query);
 $statement->execute();
-$categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+$search_categories = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <form action="search_results.php" method="get">

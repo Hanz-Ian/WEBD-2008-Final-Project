@@ -8,6 +8,8 @@
 session_start();
 require_once 'connect.php';
 
+$category_name = "All Categories";
+
 if (isset($_GET['keyword'])) {
     // Sanitize the keyword
     $keyword = filter_input(INPUT_GET, 'keyword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -19,6 +21,16 @@ if (isset($_GET['keyword'])) {
         $statement = $db->prepare($query);
         $statement->bindValue(':keyword', '%' . $keyword . '%');
         $statement->bindValue(':category', $category, PDO::PARAM_INT);
+        
+        // Fetch the category name
+        $category_query = "SELECT name FROM categories WHERE category_id = :category_id";
+        $category_statement = $db->prepare($category_query);
+        $category_statement->bindValue(':category_id', $category, PDO::PARAM_INT);
+        $category_statement->execute();
+        $category_result = $category_statement->fetch(PDO::FETCH_ASSOC);
+        if ($category_result) {
+            $category_name = $category_result['name'];
+        }
     }
     // Else, if "all" category was selected, execute the normal search query
     else {
@@ -42,17 +54,17 @@ if (isset($_GET['keyword'])) {
     <!-- Include Header -->
     <?php include 'header.php' ?>
 
-    <h1>Search Results for "<?= $keyword ?>" in <?= $category['name'] ?></h1>
+    <h1>Search Results for "<?= htmlspecialchars($keyword) ?>" in <?= htmlspecialchars($category_name) ?></h1>
     <!-- If there are products, show -->
     <?php if ($products): ?>
         <ul>
             <?php foreach ($products as $product): ?>
-                <li><a href="product.php?id=<?= $product['item_id'] ?>"><?= $product['name'] ?></a></li>
+                <li><a href="product.php?id=<?= htmlspecialchars($product['item_id']) ?>"><?= htmlspecialchars($product['name']) ?></a></li>
             <?php endforeach; ?>
         </ul>
     <!-- If there are no products, show "no products" message -->
     <?php else: ?>
-        <p>No results found for "<?= $keyword ?>".</p>
+        <p>No results found for "<?= htmlspecialchars($keyword) ?>".</p>
     <?php endif; ?>
 
     <!-- Include Footer -->
