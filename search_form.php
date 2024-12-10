@@ -16,8 +16,8 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
 <form action="search_results.php" method="get">
     <select name="category">
         <option value="all">All Categories</option>
-        <?php foreach ($categories as $category): ?>
-            <option value="<?= $category['category_id'] ?>"><?= $category['name'] ?></option>
+        <?php foreach ($search_categories as $search_category): ?>
+            <option value="<?= $search_category['category_id'] ?>"><?= $search_category['name'] ?></option>
         <?php endforeach; ?>
     </select>
     <input type="text" name="keyword" placeholder="Search..." required>

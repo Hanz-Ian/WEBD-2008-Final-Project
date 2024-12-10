@@ -53,13 +53,16 @@ else {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $category['name'] ?> - Vintage Archives</title>
+    <title><?= htmlspecialchars($category['name']) ?> - Vintage Archives</title>
 </head>
 <body>
+    
     <!-- Include Header -->
     <?php include 'header.php' ?>
 
     <h1>Category: <?= $category['name'] ?></h1>
+
+    
     <table>
         <tr>
             <th>Name</th>
