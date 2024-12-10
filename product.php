@@ -74,14 +74,8 @@ $total_reviews = $statement->fetchColumn();
 </head>
 <body>
 
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
-
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
-
-    <!-- Include the login link -->
-    <?php include 'login_link.php'; ?>
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
     
     <!-- Show product if it exists -->
     <?php if ($product): ?>
@@ -149,5 +143,8 @@ $total_reviews = $statement->fetchColumn();
             </div>
         <?php endif; ?>
     <?php endif; ?>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

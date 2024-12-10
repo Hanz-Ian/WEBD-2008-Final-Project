@@ -65,11 +65,8 @@ elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
     <title>Delete <?= "{$product['name']}" ?></title>
 </head>
 <body>
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
-
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
     
     <h1>Delete Product</h1>
     <!-- Show image if it exists within the item -->
@@ -98,5 +95,8 @@ elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
         <input type="hidden" name="confirm" value="no">
         <input type="submit" value="No, go back">
     </form>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

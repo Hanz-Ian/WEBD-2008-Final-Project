@@ -56,14 +56,8 @@ else {
     <title><?= $category['name'] ?> - Vintage Archives</title>
 </head>
 <body>
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
-
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
-
-    <!-- Include the login link -->
-    <?php include 'login_link.php'; ?>
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
 
     <h1>Category: <?= $category['name'] ?></h1>
     <table>
@@ -91,5 +85,8 @@ else {
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

@@ -39,14 +39,8 @@ if (isset($_GET['keyword'])) {
     <title>Search Results - Vintage Archives</title>
 </head>
 <body>
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
-
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
-
-    <!-- Include the login link -->
-    <?php include 'login_link.php'; ?>
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
 
     <h1>Search Results for "<?= $keyword ?>"</h1>
     <!-- If there are products, show -->
@@ -60,5 +54,8 @@ if (isset($_GET['keyword'])) {
     <?php else: ?>
         <p>No results found for "<?= $keyword ?>".</p>
     <?php endif; ?>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

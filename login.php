@@ -65,5 +65,8 @@ if ($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
             
         <input type="submit" value="Login">
     </form>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

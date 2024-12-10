@@ -1,4 +1,9 @@
 <?php
+/****************      
+    Name: Hanz Samonte
+    Date:  December 6, 2024
+    Description: Final Project - Registration  
+****************/
 
 session_start();
 require_once 'connect.php';
@@ -46,14 +51,15 @@ if ($_POST && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_
     <title>Register User</title>
 </head>
 <body>
+
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
+
     <!-- Show error message after invalid registration -->
     <h1>Register</h1>
     <?php if (isset($error_message)): ?>
         <p><?= htmlspecialchars($error_message) ?></p>
     <?php endif; ?>
-
-    <!-- Search form -->
-    <?php include 'search_form.php'; ?>
 
     <form action="register.php" method="post">
         <label for="email">Email:</label>
@@ -78,5 +84,8 @@ if ($_POST && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_
             
         <input type="submit" value="Register">
     </form>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

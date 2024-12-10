@@ -94,12 +94,9 @@ else {
     <title>Edit <?= "{$product['name']}" ?></title>
 </head>
 <body>
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
 
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
-
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
 
     <h1>Edit Product</h1>
     <?php if ($id): ?>
@@ -160,5 +157,8 @@ else {
             <input type="submit" value="Update Product">
         </form>
     <?php endif; ?>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

@@ -46,11 +46,8 @@ if ($_POST && !empty($_POST['name'])) {
     <title>Create New Category</title>
 </head>
 <body>
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
-
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
     
     <h1>Create Category</h1>
     <form action="create_category.php" method="post">
@@ -59,5 +56,8 @@ if ($_POST && !empty($_POST['name'])) {
         <br><br>
         <input type="submit" value="Create Category">
     </form>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

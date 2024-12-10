@@ -1,3 +1,9 @@
+<!-- /****************      
+    Name: Hanz Samonte
+    Date:  December 9, 2024
+    Description: Final Project - Header  
+****************/ -->
+
 <header>
     <h1>Vintage Archives</h1>
     <?php

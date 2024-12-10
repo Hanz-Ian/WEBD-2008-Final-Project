@@ -87,5 +87,8 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

@@ -23,14 +23,8 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
     <title>Categories - Vintage Archives</title>
 </head>
 <body>
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
-
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
-
-    <!-- Include the login link -->
-    <?php include 'login_link.php'; ?>
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
 
     <h1>Categories</h1>
     <ul>
@@ -38,5 +32,8 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
             <li><a href="category.php?id=<?= $category['category_id'] ?>"><?= $category['name'] ?></a></li>
         <?php endforeach; ?>
     </ul>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>

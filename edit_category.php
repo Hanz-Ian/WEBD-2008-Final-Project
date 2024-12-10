@@ -69,11 +69,8 @@ else {
     <title>Edit <?= "{$category['name']}" ?></title>
 </head>
 <body>
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
-
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
+    <!-- Include Header -->
+    <?php include 'header.php' ?>
     
     <h1>Edit Category</h1>
     <?php if ($category_id): ?>
@@ -88,5 +85,8 @@ else {
             <input type="submit" value="Update Category">
         </form>
     <?php endif; ?>
+
+    <!-- Include Footer -->
+    <?php include 'footer.php' ?>
 </body>
 </html>
