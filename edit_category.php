@@ -75,7 +75,7 @@ else {
     <h1>Edit Category</h1>
     <?php if ($category_id): ?>
         <form action="edit_category.php?id=<?= $category['category_id'] ?>" method="post">
-            <input type="hidden" name="category_id" value="<?= $category['category_id'] ?>">
+            <input type="hidden" name="category_id" value="<?= htmlspecialchars($category['category_id']) ?>">
 
             <label for="name">Category Name:</label>
             <input type="text" id="name" name="name" value="<?= htmlspecialchars($category['name']) ?>" required>

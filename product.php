@@ -85,12 +85,12 @@ $total_reviews = $statement->fetchColumn();
         <?php endif; ?>
 
         <!-- Display full product details -->
-        <h1><?= $product['name'] ?></h1>
-        <p><?= $product['description'] ?></p>
-        <p><strong>Brand:</strong> <?= $product['brand'] ?></p>
-        <p><strong>Size:</strong> <?= $product['size'] ?></p>
-        <p><strong>Price:</strong> $<?= $product['price'] ?></p>
-        <p><strong>Style:</strong> <?= $product['style'] ?></p>
+        <h1><?= htmlspecialchars($product['name']) ?></h1>
+        <p><?= htmlspecialchars($product['description']) ?></p>
+        <p><strong>Brand:</strong> <?= htmlspecialchars($product['brand']) ?></p>
+        <p><strong>Size:</strong> <?= htmlspecialchars($product['size']) ?></p>
+        <p><strong>Price:</strong> $<?= htmlspecialchars($product['price']) ?></p>
+        <p><strong>Style:</strong> <?= htmlspecialchars($product['style']) ?></p>
 
         <!-- Create Review Form -->
         <h3>Leave a Review</h3>
@@ -111,7 +111,8 @@ $total_reviews = $statement->fetchColumn();
         <h2>Reviews</h2>
         <div id="recent-reviews">
             <?php foreach ($reviews as $review): ?>
-                <p><strong><?= $review['name'] ?>:</strong> <?= $review['review'] ?></p>
+                <p><strong><?= htmlspecialchars($review['name']) ?>:</strong> 
+                <?= htmlspecialchars($review['review']) ?></p>
                 <!-- If user is admin, it's able to delete reviews -->
                 <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
                     <form id="delete-form-<?= $review['review_id'] ?>" action="delete_review.php" method="post" style="display:inline;">
@@ -130,7 +131,8 @@ $total_reviews = $statement->fetchColumn();
         <?php if ($show_all): ?>
             <div id="all-reviews">
                 <?php foreach ($reviews as $review): ?>
-                    <p><strong><?= $review['name'] ?>:</strong> <?= $review['review'] ?></p>
+                    <p><strong><?= htmlspecialchars($review['name']) ?>:</strong> 
+                    <?= htmlspecialchars($review['review']) ?></p>
                     <!-- If user is admin, it's able to delete reviews -->
                     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
                         <form id="delete-form-<?= $review['review_id'] ?>" action="delete_review.php" method="post" style="display:inline;">

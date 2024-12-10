@@ -75,14 +75,14 @@ elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
     <?php endif; ?>
     
     <p>Are you sure you want to delete the following product?</p>
-    <p><strong>Name:</strong> <?= $product['name'] ?></p>
-    <p><strong>Brand:</strong> <?= $product['brand'] ?></p>
-    <p><strong>Description:</strong> <?= $product['description'] ?></p>
-    <p><strong>Size:</strong> <?= $product['size'] ?></p>
-    <p><strong>Price:</strong> <?= $product['price'] ?></p>
-    <p><strong>Stock:</strong> <?= $product['stock'] ?></p>
-    <p><strong>Style:</strong> <?= $product['style'] ?></p>
-    <p><strong>Category:</strong> <?= $product['category'] ?></p>
+    <p><strong>Name:</strong> <?= htmlspecialchars($product['name']) ?></p>
+    <p><strong>Brand:</strong> <?= htmlspecialchars($product['brand']) ?></p>
+    <p><strong>Description:</strong> <?= htmlspecialchars($product['description']) ?></p>
+    <p><strong>Size:</strong> <?= htmlspecialchars($product['size']) ?></p>
+    <p><strong>Price:</strong> <?= htmlspecialchars($product['price']) ?></p>
+    <p><strong>Stock:</strong> <?= htmlspecialchars($product['stock']) ?></p>
+    <p><strong>Style:</strong> <?= htmlspecialchars($product['style']) ?></p>
+    <p><strong>Category:</strong> <?= htmlspecialchars($product['category']) ?></p>
 
     <!-- "Yes" form -->
     <form action="delete_product.php?id=<?= $product['item_id'] ?>" method="post">

@@ -173,47 +173,49 @@ else {
             <br><br>
 
             <input type="hidden" name="id" value="<?= $product['item_id'] ?>">
-            <input type="hidden" name="existing_image" value="<?= $product['image'] ?>">
+            <input type="hidden" name="existing_image" value="<?= htmlspecialchars($product['image']) ?>">
 
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<?= $product['name'] ?>" required>
+            <input type="text" id="name" name="name" value="<?= htmlspecialchars($product['name']) ?>" required>
                 
             <br><br>
                 
             <label for="brand">Brand:</label>
-            <input type="text" id="brand" name="brand" value="<?= $product['brand'] ?>" required>
+            <input type="text" id="brand" name="brand" value="<?= htmlspecialchars($product['brand']) ?>" required>
                 
             <br><br>
                 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" required><?= $product['description'] ?></textarea>
+            <textarea id="description" name="description" required><?= htmlspecialchars($product['description']) ?></textarea>
                 
             <br><br>
                 
             <label for="size">Size:</label>
-            <input type="text" id="size" name="size" value="<?= $product['size'] ?>" required>
+            <input type="text" id="size" name="size" value="<?= htmlspecialchars($product['size']) ?>" required>
                 
             <br><br>
                 
             <label for="price">Price:</label>
-            <input type="number" step="0.01" id="price" name="price" value="<?= $product['price'] ?>" required>
+            <input type="number" step="0.01" id="price" name="price" value="<?= htmlspecialchars($product['price']) ?>" required>
                 
             <br><br>
                 
             <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" value="<?= $product['stock'] ?>" required>
+            <input type="number" id="stock" name="stock" value="<?= htmlspecialchars($product['stock']) ?>" required>
             
             <br><br>
                 
             <label for="style">Style:</label>
-            <input type="text" id="style" name="style" value="<?= $product['style'] ?>" required>
+            <input type="text" id="style" name="style" value="<?= htmlspecialchars($product['style']) ?>" required>
                 
             <br><br>
                 
             <label for="category_id">Category:</label>
             <select id="category_id" name="category_id" required>
                 <?php foreach ($categories as $category): ?>
-                    <option value="<?= htmlspecialchars($category['category_id']) ?>" <?= $product['category_id'] == $category['category_id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option>
+                    <option value="<?= htmlspecialchars($category['category_id']) ?>" 
+                    <?= $product['category_id'] == $category['category_id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($category['name']) ?></option>
                 <?php endforeach; ?>
             </select>
                 
