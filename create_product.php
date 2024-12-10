@@ -7,6 +7,10 @@
 
 session_start();
 require_once 'connect.php';
+require 'image-resize/ImageResize.php';
+require 'image-resize/ImageResizeException.php';
+
+use \Gumlet\ImageResize;
 
 
 // Redirect to login page if not logged in or not an admin
@@ -29,8 +33,43 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     $style = filter_input(INPUT_POST, 'style', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+    // Handle image upload
+    $image_filename = null;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $image_filename = $_FILES['image']['name'];
+        $temporary_image_path = $_FILES['image']['tmp_name'];
+        $new_image_path = file_upload_path($image_filename);
+
+        $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];
+        $actual_mime_type = mime_content_type($temporary_image_path);
+
+        $allowed_file_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $actual_file_extension = pathinfo($new_image_path, PATHINFO_EXTENSION);
+
+        // Variables for validating if file extensions and mime types are valid
+        $file_extension_valid = in_array($actual_file_extension, $allowed_file_extensions);
+        $mime_type_valid = in_array($actual_mime_type, $allowed_mime_types);
+
+        // When the variables of file extensions and mime types are valid
+        if ($file_extension_valid && $mime_type_valid) {
+            if (move_uploaded_file($temporary_image_path, $new_image_path)) {
+                // Resize the image
+                $image = new ImageResize($new_image_path);
+                $image->resizeToWidth(400);
+                $image->save($new_image_path);
+            } 
+            else {
+                $image_filename = null;
+            }
+        } 
+        else {
+            $image_filename = null;
+        }
+    }
+
     // Build the parameterized SQL query and bind to the above sanitized values.
-    $query = "INSERT INTO items (name, brand, description, size, price, stock, style, category) VALUES (:name, :brand, :description, :size, :price, :stock, :style, :category)";
+    $query = "INSERT INTO items (name, brand, description, size, price, stock, style, category, image) 
+    VALUES (:name, :brand, :description, :size, :price, :stock, :style, :category, :image)";
     $statement = $db->prepare($query);
 
     // Bind values to the parameters
@@ -42,18 +81,19 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     $statement->bindValue(':stock', $stock);
     $statement->bindValue(':style', $style);
     $statement->bindValue(':category', $category);
+    $statement->bindValue(':image', $image_filename);
 
     // Execute the Insert
     if ($statement->execute()) {
         echo "Product created successfully!";
-    } else {
+    } 
+    else {
         echo "Error: Could not create product.";
     }
     
     // Redirect to a confirmation or product listing page
-    header("Location: product_list.php");
+    header("Location: index.php");
     exit();
-    
 }
 ?>
 
@@ -71,6 +111,12 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     
     <h1>Create New Product</h1>
     <form action="create_product.php" method="post">
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image">
+
+        <br><br>
+
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
             

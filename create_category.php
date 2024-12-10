@@ -33,7 +33,7 @@ if ($_POST && !empty($_POST['name'])) {
     }
 
     // Redirect to a confirmation or category listing page
-    header("Location: category_list.php");
+    header("Location: categories.php");
     exit();
 }
 ?>
