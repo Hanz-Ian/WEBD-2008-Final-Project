@@ -12,7 +12,6 @@ require 'image-resize/ImageResizeException.php';
 
 use \Gumlet\ImageResize;
 
-
 // Redirect to login page if not logged in or not an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: login.php');
@@ -64,19 +63,17 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
         $file_extension_valid = in_array($actual_file_extension, $allowed_file_extensions);
         $mime_type_valid = in_array($actual_mime_type, $allowed_mime_types);
 
-        // When the variables of file extensions and mime types are valid
+        // Ensure the image is uploaded and resized correctly
         if ($file_extension_valid && $mime_type_valid) {
             if (move_uploaded_file($temporary_image_path, $new_image_path)) {
                 // Resize the image
                 $image = new ImageResize($new_image_path);
                 $image->resizeToWidth(400);
                 $image->save($new_image_path);
-            } 
-            else {
+            } else {
                 $image_filename = null;
             }
-        } 
-        else {
+        } else {
             $image_filename = null;
         }
     }
@@ -123,7 +120,7 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     <?php include 'header.php' ?>
     
     <h1>Create New Product</h1>
-    <form action="create_product.php" method="post">
+    <form action="create_product.php" method="post" enctype="multipart/form-data">
 
         <label for="image">Image:</label>
         <input type="file" id="image" name="image">

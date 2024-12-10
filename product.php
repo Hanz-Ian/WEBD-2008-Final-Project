@@ -118,7 +118,7 @@ $total_reviews = $statement->fetchColumn();
                     <form id="delete-form-<?= $review['review_id'] ?>" action="delete_review.php" method="post" style="display:inline;">
                             <input type="hidden" name="review_id" value="<?= $review['review_id'] ?>">
                             <input type="hidden" name="item_id" value="<?= $product['item_id'] ?>">
-                            <button type="button" onclick="return confirm('Are you sure you want to delete this review?')">Delete</button>
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this review?')">Delete</button>
                     </form>
                 <?php endif; ?>
             <?php endforeach; ?>

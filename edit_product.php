@@ -7,7 +7,6 @@
 
 session_start();
 require_once 'connect.php';
-
 require 'image-resize/ImageResize.php';
 require 'image-resize/ImageResizeException.php';
 
@@ -145,7 +144,7 @@ else {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit <?= "{$product['name']}" ?></title>
+    <title>Edit <?= htmlspecialchars($product['name']) ?></title>
 </head>
 <body>
 
@@ -154,11 +153,11 @@ else {
 
     <h1>Edit Product</h1>
     <?php if ($id): ?>
-        <form action="edit_product.php?id=<?= $product['item_id'] ?>" method="post">
+        <form action="edit_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" method="post" enctype="multipart/form-data">
 
             <label for="image">Image:</label>
             <?php if ($product['image']): ?>
-                <img src="uploads/<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
+                <img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                 <br><br>
                 <label for="delete_image">Delete Image:</label>
                 <input type="checkbox" id="delete_image" name="delete_image" value="yes">
@@ -170,7 +169,7 @@ else {
 
             <br><br>
 
-            <input type="hidden" name="id" value="<?= $product['item_id'] ?>">
+            <input type="hidden" name="id" value="<?= htmlspecialchars($product['item_id']) ?>">
             <input type="hidden" name="existing_image" value="<?= htmlspecialchars($product['image']) ?>">
 
             <label for="name">Name:</label>
