@@ -42,7 +42,7 @@ if (isset($_GET['keyword'])) {
     <!-- Include Header -->
     <?php include 'header.php' ?>
 
-    <h1>Search Results for "<?= $keyword ?>"</h1>
+    <h1>Search Results for "<?= $keyword ?>" in <?= $category['name'] ?></h1>
     <!-- If there are products, show -->
     <?php if ($products): ?>
         <ul>

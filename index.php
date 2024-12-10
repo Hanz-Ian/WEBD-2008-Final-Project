@@ -8,8 +8,9 @@
 session_start();
 require_once 'connect.php';
 
-// Fetch all products from the database
-$query = "SELECT * FROM items";
+// Fetch all products from the database with their category names
+$query = "SELECT items.*, categories.name AS category_name FROM items 
+          JOIN categories ON items.category_id = categories.category_id";
 $statement = $db->prepare($query);
 $statement->execute();
 $products = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -19,7 +20,9 @@ $sort_column = isset($_GET['sort']) ? $_GET['sort'] : 'name';
 $sort_direction = isset($_GET['direction']) && $_GET['direction'] === 'desc' ? 'DESC' : 'ASC';
 
 // Fetch all products from the database with sorting
-$query = "SELECT * FROM items ORDER BY $sort_column $sort_direction";
+$query = "SELECT items.*, categories.name AS category_name FROM items 
+          JOIN categories ON items.category_id = categories.category_id 
+          ORDER BY $sort_column $sort_direction";
 $statement = $db->prepare($query);
 $statement->execute();
 $products = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -71,11 +74,11 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
         </tr>
         <?php foreach ($products as $product): ?>
             <tr>
-                <td><?= $product['name'] ?></td>
-                <td><?= $product['brand'] ?></td>             
-                <td><?= $product['size'] ?></td>
-                <td><?= $product['price'] ?></td>
-                <td><?= $product['category'] ?></td>
+            <td><a href="product.php?id=<?= htmlspecialchars($product['item_id']) ?>"><?= htmlspecialchars($product['name']) ?></a></td>
+                <td><?= htmlspecialchars($product['brand']) ?></td>             
+                <td><?= htmlspecialchars($product['size']) ?></td>
+                <td><?= htmlspecialchars($product['price']) ?></td>
+                <td><?= htmlspecialchars($product['category_name']) ?></td>
                 <td>
                     <!-- If is admin, it's able to edit/delete products -->
                     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
