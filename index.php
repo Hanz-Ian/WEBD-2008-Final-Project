@@ -57,9 +57,6 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
         <p><?= htmlspecialchars($_SESSION['update_success']) ?></p>
         <?php unset($_SESSION['update_success']); // Clear the success message ?>
     <?php endif; ?>
-
-    <!-- Search form -->
-    <?php include 'search_form.php'; ?>
     
     <!-- Showing list of Products -->
     <h1>Product List</h1>

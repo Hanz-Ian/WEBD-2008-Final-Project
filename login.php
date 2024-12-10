@@ -43,14 +43,15 @@ if ($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
     <title>Login</title>
 </head>
 <body>
+    
+    <!-- Header -->
+    <?php include 'header.php'; ?>
+
     <h1>Login</h1>
     <!-- Show error message after invalid login -->
     <?php if (isset($error_message)): ?>
         <p><?= [$error_message] ?></p>
     <?php endif; ?>
-
-    <!-- Search form -->
-    <?php include 'search_form.php'; ?>
     
     <form action="login.php" method="post">
         <label for="username">Username:</label>
