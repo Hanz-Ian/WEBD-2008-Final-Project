@@ -8,10 +8,25 @@
 session_start();
 require_once 'connect.php';
 
+require 'image-resize/ImageResize.php';
+require 'image-resize/ImageResizeException.php';
+
+use \Gumlet\ImageResize;
+
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: login.php'); // Redirect to login page if not logged in or not an admin
     exit();
+}
+
+// Function to build the file upload path
+function file_upload_path($original_filename, $upload_subfolder_name = 'uploads') {
+    $current_folder = dirname(__FILE__);
+    
+    // Build an array of paths segment names to be joined using OS specific slashes.
+    $path_segments = [$current_folder, $upload_subfolder_name, basename($original_filename)];
+    
+    return join(DIRECTORY_SEPARATOR, $path_segments);
 }
 
 // Check if edited product contents are set
@@ -31,8 +46,47 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
     $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-    // Keep the existing image
+    // Handle image upload
     $image_filename = $_POST['existing_image'];
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $image_filename = $_FILES['image']['name'];
+        $temporary_image_path = $_FILES['image']['tmp_name'];
+        $new_image_path = file_upload_path($image_filename);
+
+        $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];
+        $actual_mime_type = mime_content_type($temporary_image_path);
+
+        $allowed_file_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $actual_file_extension = pathinfo($new_image_path, PATHINFO_EXTENSION);
+
+        // Variables for validating if file extensions and mime types are valid
+        $file_extension_valid = in_array($actual_file_extension, $allowed_file_extensions);
+        $mime_type_valid = in_array($actual_mime_type, $allowed_mime_types);
+
+        // When the variables of file extensions and mime types are valid
+        if ($file_extension_valid && $mime_type_valid) {
+            if (move_uploaded_file($temporary_image_path, $new_image_path)) {
+                // Resize the image
+                $image = new ImageResize($new_image_path);
+                $image->resizeToWidth(400);
+                $image->save($new_image_path);
+            } 
+            else {
+                $image_filename = $_POST['existing_image'];
+            }
+        } 
+        else {
+            $image_filename = $_POST['existing_image'];
+        }
+    }
+
+    // Check if the image should be deleted
+    if (isset($_POST['delete_image']) && $_POST['delete_image'] == 'yes') {
+        if (file_exists(file_upload_path($image_filename))) {
+            unlink(file_upload_path($image_filename));
+        }
+        $image_filename = null;
+    }
 
     // Build the parameterized SQL query and bind to the above sanitized values.
     $query = "UPDATE items SET name = :name, brand = :brand, description = :description, size = :size, 
@@ -55,7 +109,8 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
     // Execute the Update
     if ($statement->execute()) {
         $_SESSION['update_success'] = "Product '{$name}' has been updated successfully!";
-    } else {
+    } 
+    else {
         $_SESSION['update_error'] = "Error: Could not update product.";
     }
 
@@ -105,8 +160,13 @@ else {
             <label for="image">Image:</label>
             <?php if ($product['image']): ?>
                 <img src="uploads/<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
+                <br><br>
+                <label for="delete_image">Delete Image:</label>
+                <input type="checkbox" id="delete_image" name="delete_image" value="yes">
             <?php else: ?>
                 <p>No image available</p>
+                <label for="image">Choose New Image:</label>
+                <input type="file" id="image" name="image">
             <?php endif; ?>
 
             <br><br>

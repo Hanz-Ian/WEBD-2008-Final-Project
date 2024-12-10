@@ -18,6 +18,16 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: login.php');
     exit();
 }
+
+// Function to build the file upload path
+function file_upload_path($original_filename, $upload_subfolder_name = 'uploads') {
+    $current_folder = dirname(__FILE__);
+    
+    // Build an array of paths segment names to be joined using OS specific slashes.
+    $path_segments = [$current_folder, $upload_subfolder_name, basename($original_filename)];
+    
+    return join(DIRECTORY_SEPARATOR, $path_segments);
+}
     
 
 if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST['description']) 
