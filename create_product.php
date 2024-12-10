@@ -28,11 +28,16 @@ function file_upload_path($original_filename, $upload_subfolder_name = 'uploads'
     
     return join(DIRECTORY_SEPARATOR, $path_segments);
 }
-    
+
+// Fetch Categories from the database
+$query = "SELECT * FROM categories ORDER BY name ASC";
+$statement = $db->prepare($query);
+$statement->execute();
+$categories = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST['description']) 
 && !empty($_POST['size']) && !empty($_POST['price']) && !empty($_POST['style']) 
-&& !empty($_POST['category']) && isset($_POST['stock'])) {
+&& !empty($_POST['category_id']) && isset($_POST['stock'])) {
     // Sanitize user input to escape HTML entities and filter out dangerous characters
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -41,7 +46,7 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $stock = filter_input(INPUT_POST, 'stock', FILTER_SANITIZE_NUMBER_INT);
     $style = filter_input(INPUT_POST, 'style', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $category_id = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_NUMBER_INT);
 
     // Handle image upload
     $image_filename = null;
@@ -78,8 +83,8 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     }
 
     // Build the parameterized SQL query and bind to the above sanitized values.
-    $query = "INSERT INTO items (name, brand, description, size, price, stock, style, category, image) 
-    VALUES (:name, :brand, :description, :size, :price, :stock, :style, :category, :image)";
+    $query = "INSERT INTO items (name, brand, description, size, price, stock, style, category_id, image) 
+    VALUES (:name, :brand, :description, :size, :price, :stock, :style, :category_id, :image)";
     $statement = $db->prepare($query);
 
     // Bind values to the parameters
@@ -90,7 +95,7 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
     $statement->bindValue(':price', $price);
     $statement->bindValue(':stock', $stock);
     $statement->bindValue(':style', $style);
-    $statement->bindValue(':category', $category);
+    $statement->bindValue(':category_id', $category_id);
     $statement->bindValue(':image', $image_filename);
 
     // Execute the Insert
@@ -162,8 +167,12 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
             
         <br><br>
             
-        <label for="category">Category:</label>
-        <input type="text" id="category" name="category" required>
+        <label for="category_id">Category:</label>
+        <select id="category_id" name="category_id" required>
+            <?php foreach ($categories as $category): ?>
+                <option value="<?= htmlspecialchars($category['category_id']) ?>"><?= htmlspecialchars($category['name']) ?></option>
+            <?php endforeach; ?>
+        </select>
             
         <br><br>
             

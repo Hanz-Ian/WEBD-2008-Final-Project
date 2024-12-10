@@ -29,12 +29,18 @@ function file_upload_path($original_filename, $upload_subfolder_name = 'uploads'
     return join(DIRECTORY_SEPARATOR, $path_segments);
 }
 
+// Fetch Categories from the database
+$query = "SELECT * FROM categories ORDER BY name ASC";
+$statement = $db->prepare($query);
+$statement->execute();
+$categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 // Check if edited product contents are set
 if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['description']) 
-&& isset($_POST['size']) && isset($_POST['price']) && isset($_POST['style']) && isset($_POST['category']) 
+&& isset($_POST['size']) && isset($_POST['price']) && isset($_POST['style']) && isset($_POST['category_id']) 
 && isset($_POST['stock']) && isset($_POST['id']) && !empty($_POST['name']) && !empty($_POST['brand']) 
 && !empty($_POST['description']) && !empty($_POST['size']) && !empty($_POST['price']) 
-&& !empty($_POST['style']) && !empty($_POST['category']) && !empty($_POST['stock'])) {
+&& !empty($_POST['style']) && !empty($_POST['category_id']) && !empty($_POST['stock'])) {
     // Sanitize user input to escape HTML entities and filter out dangerous characters
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -43,7 +49,7 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
     $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $stock = filter_input(INPUT_POST, 'stock', FILTER_SANITIZE_NUMBER_INT);
     $style = filter_input(INPUT_POST, 'style', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $category_id = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_NUMBER_INT);
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
     // Handle image upload
@@ -59,23 +65,19 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
         $allowed_file_extensions = ['jpg', 'jpeg', 'png', 'gif'];
         $actual_file_extension = pathinfo($new_image_path, PATHINFO_EXTENSION);
 
-        // Variables for validating if file extensions and mime types are valid
         $file_extension_valid = in_array($actual_file_extension, $allowed_file_extensions);
         $mime_type_valid = in_array($actual_mime_type, $allowed_mime_types);
 
-        // When the variables of file extensions and mime types are valid
         if ($file_extension_valid && $mime_type_valid) {
             if (move_uploaded_file($temporary_image_path, $new_image_path)) {
                 // Resize the image
                 $image = new ImageResize($new_image_path);
                 $image->resizeToWidth(400);
                 $image->save($new_image_path);
-            } 
-            else {
+            } else {
                 $image_filename = $_POST['existing_image'];
             }
-        } 
-        else {
+        } else {
             $image_filename = $_POST['existing_image'];
         }
     }
@@ -90,7 +92,7 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
 
     // Build the parameterized SQL query and bind to the above sanitized values.
     $query = "UPDATE items SET name = :name, brand = :brand, description = :description, size = :size, 
-    price = :price, stock = :stock, style = :style, category = :category, 
+    price = :price, stock = :stock, style = :style, category_id = :category_id, 
     image = :image WHERE item_id = :id";
     $statement = $db->prepare($query);
 
@@ -102,15 +104,14 @@ if ($_POST && isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['d
     $statement->bindValue(':price', $price);
     $statement->bindValue(':stock', $stock);
     $statement->bindValue(':style', $style);
-    $statement->bindValue(':category', $category);
+    $statement->bindValue(':category_id', $category_id);
     $statement->bindValue(':image', $image_filename);
     $statement->bindValue(':id', $id, PDO::PARAM_INT);
 
     // Execute the Update
     if ($statement->execute()) {
         $_SESSION['update_success'] = "Product '{$name}' has been updated successfully!";
-    } 
-    else {
+    } else {
         $_SESSION['update_error'] = "Error: Could not update product.";
     }
 
@@ -209,8 +210,12 @@ else {
                 
             <br><br>
                 
-            <label for="category">Category:</label>
-            <input type="text" id="category" name="category" value="<?= $product['category'] ?>" required>
+            <label for="category_id">Category:</label>
+            <select id="category_id" name="category_id" required>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= htmlspecialchars($category['category_id']) ?>" <?= $product['category_id'] == $category['category_id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option>
+                <?php endforeach; ?>
+            </select>
                 
             <br><br>
                 
