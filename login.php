@@ -22,7 +22,6 @@ if ($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
 
     // If password is correct, start a session
     if ($user && password_verify($password, $user['password'])) {
-        
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
@@ -43,14 +42,14 @@ if ($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
     <title>Login</title>
 </head>
 <body>
-    
+
     <!-- Header -->
     <?php include 'header.php'; ?>
 
     <h1>Login</h1>
     <!-- Show error message after invalid login -->
     <?php if (isset($error_message)): ?>
-        <p><?= [$error_message] ?></p>
+        <p><?= htmlspecialchars($error_message) ?></p>
     <?php endif; ?>
     
     <form action="login.php" method="post">

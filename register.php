@@ -29,7 +29,7 @@ if ($_POST && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_
         // Redirect to the success page if user successfully registered
         if ($statement->execute()) {
             $_SESSION['registration_success'] = $username;
-            header('Location: register_success.php'); 
+            header('Location: index.php'); 
             exit();
         } else {
             $error_message = "Error: Could not register user.";
@@ -49,7 +49,7 @@ if ($_POST && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_
     <!-- Show error message after invalid registration -->
     <h1>Register</h1>
     <?php if (isset($error_message)): ?>
-        <p><?= [$error_message] ?></p>
+        <p><?= htmlspecialchars($error_message) ?></p>
     <?php endif; ?>
 
     <!-- Search form -->
