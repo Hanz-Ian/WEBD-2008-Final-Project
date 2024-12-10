@@ -11,11 +11,21 @@ require 'connect.php';
 if (isset($_GET['keyword'])) {
     // Sanitize the keyword
     $keyword = filter_input(INPUT_GET, 'keyword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
 
-    // Search for products by name
-    $query = "SELECT * FROM items WHERE name LIKE :keyword ORDER BY name ASC";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':keyword', '%' . $keyword . '%');
+    // If a search included a specific category, execute this query
+    if ($category && $category !== 'all') {
+        $query = "SELECT * FROM items WHERE name LIKE :keyword AND category_id = :category ORDER BY name ASC";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':keyword', '%' . $keyword . '%');
+        $statement->bindValue(':category', $category, PDO::PARAM_INT);
+    }
+    // Else, if "all" category was selected, execute the normal search query
+    else {
+        $query = "SELECT * FROM items WHERE name LIKE :keyword ORDER BY name ASC";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':keyword', '%' . $keyword . '%');
+    }
     $statement->execute();
     $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 }
