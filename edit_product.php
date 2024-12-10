@@ -94,8 +94,12 @@ else {
     <title>Edit <?= "{$product['name']}" ?></title>
 </head>
 <body>
-    <!-- Search form -->
+    <!-- Include the search form -->
     <?php include 'search_form.php'; ?>
+
+    <!-- Include the logout link -->
+    <?php include 'logout_link.php'; ?>
+
 
     <h1>Edit Product</h1>
     <?php if ($id): ?>

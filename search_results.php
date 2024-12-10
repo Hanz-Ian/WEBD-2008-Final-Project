@@ -42,10 +42,11 @@ if (isset($_GET['keyword'])) {
     <!-- Include the search form -->
     <?php include 'search_form.php'; ?>
 
-    <!-- Logout -->
-    <?php if (isset($_SESSION['user_id'])): ?>
-        <a href="logout.php" class="logout-button">Logout</a>
-    <?php endif; ?>
+    <!-- Include the logout link -->
+    <?php include 'logout_link.php'; ?>
+
+    <!-- Include the login link -->
+    <?php include 'login_link.php'; ?>
 
     <h1>Search Results for "<?= $keyword ?>"</h1>
     <!-- If there are products, show -->

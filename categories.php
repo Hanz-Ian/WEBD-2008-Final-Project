@@ -23,13 +23,14 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
     <title>Categories - Vintage Archives</title>
 </head>
 <body>
-    <!-- Logout -->
-    <?php if (isset($_SESSION['user_id'])): ?>
-        <a href="logout.php" class="logout-button">Logout</a>
-    <?php endif; ?>
-
-    <!-- Search form -->
+    <!-- Include the search form -->
     <?php include 'search_form.php'; ?>
+
+    <!-- Include the logout link -->
+    <?php include 'logout_link.php'; ?>
+
+    <!-- Include the login link -->
+    <?php include 'login_link.php'; ?>
 
     <h1>Categories</h1>
     <ul>

@@ -69,8 +69,11 @@ else {
     <title>Edit <?= "{$category['name']}" ?></title>
 </head>
 <body>
-    <!-- Search form -->
+    <!-- Include the search form -->
     <?php include 'search_form.php'; ?>
+
+    <!-- Include the logout link -->
+    <?php include 'logout_link.php'; ?>
     
     <h1>Edit Category</h1>
     <?php if ($category_id): ?>
