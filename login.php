@@ -6,7 +6,7 @@
 ****************/
 
 session_start();
-require 'connect.php';
+require_once 'connect.php';
 
 if ($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
     // Sanitize user input

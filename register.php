@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require 'connect.php';
+require_once 'connect.php';
 
 if ($_POST && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_POST['password']) 
 && !empty($_POST['confirm_password'])) {

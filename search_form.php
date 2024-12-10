@@ -6,7 +6,7 @@
 ****************/
 
 // Fetch categories from the database
-require 'connect.php';
+require_once 'connect.php';
 $query = "SELECT * FROM categories ORDER BY name ASC";
 $statement = $db->prepare($query);
 $statement->execute();

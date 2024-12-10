@@ -6,7 +6,7 @@
 ****************/
 
 session_start();
-require 'connect.php';
+require_once 'connect.php';
 
 if (isset($_GET['keyword'])) {
     // Sanitize the keyword

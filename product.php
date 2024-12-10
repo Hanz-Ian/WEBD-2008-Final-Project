@@ -6,7 +6,7 @@
 ****************/
 
 session_start();
-require 'connect.php';
+require_once 'connect.php';
 
 // Fetch product details
 if (isset($_GET['id'])) {

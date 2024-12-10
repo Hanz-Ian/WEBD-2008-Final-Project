@@ -6,7 +6,7 @@
 ****************/
 
 session_start();
-require 'connect.php';
+require_once 'connect.php';
 
 // Fetch all categories from the database
 $query = "SELECT * FROM categories ORDER BY name ASC";

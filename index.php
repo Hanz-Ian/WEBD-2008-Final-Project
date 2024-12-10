@@ -6,9 +6,7 @@
 ****************/
 
 session_start();
-require 'connect.php';
-
-
+require_once 'connect.php';
 
 // Fetch all products from the database
 $query = "SELECT * FROM items";
@@ -39,14 +37,8 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
 </head>
 <body>
     
-    <!-- Include the search form -->
-    <?php include 'search_form.php'; ?>
-
-    <!-- Include the logout link -->
-    <?php include 'logout_link.php'; ?>
-
-    <!-- Include the login link -->
-    <?php include 'login_link.php'; ?>
+    <!-- Include the Header -->
+     <?php include 'header.php' ?>
 
     <!-- If a login was successful prior, it'll redirect to the page -->
     <?php if (isset($_SESSION['login_success'])): ?>

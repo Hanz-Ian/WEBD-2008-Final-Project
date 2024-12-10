@@ -7,7 +7,7 @@
 ****************/
 
 session_start();
-require 'connect.php';
+require_once 'connect.php';
 
 if ($_POST && isset($_POST['item_id']) && isset($_POST['review'])) {
     $item_id = filter_input(INPUT_POST, 'item_id', FILTER_SANITIZE_NUMBER_INT);

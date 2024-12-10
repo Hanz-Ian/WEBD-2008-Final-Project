@@ -6,7 +6,7 @@
 ****************/
 
 session_start();
-require 'connect.php';
+require_once 'connect.php';
 
 
 // Redirect to login page if not logged in or not an admin
