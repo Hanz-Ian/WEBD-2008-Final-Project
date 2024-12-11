@@ -24,6 +24,5 @@ $category = isset($_GET['category']) ? '&category=' . htmlspecialchars($_GET['ca
     <ul>
         <li><a href="?sort=name&direction=<?= $new_sort_direction . $category_id . $keyword . $category ?>" class="sort-link">Sort by Name</a></li>
         <li><a href="?sort=created_at&direction=<?= $new_sort_direction . $category_id . $keyword . $category ?>" class="sort-link">Sort by Created Date</a></li>
-        <li><a href="?sort=updated_at&direction=<?= $new_sort_direction . $category_id . $keyword . $category ?>" class="sort-link">Sort by Updated Date</a></li>
     </ul>
 </nav>
