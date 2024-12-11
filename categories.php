@@ -20,20 +20,24 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Categories - Vintage Archives</title>
 </head>
 <body>
-    <!-- Include Header -->
-    <?php include 'header.php' ?>
+    <div id="container">
+        <!-- Include Header -->
+         <?php include 'header.php' ?>
 
-    <h1>Categories</h1>
-    <ul>
-        <?php foreach ($categories as $category): ?>
-            <li><a href="category.php?id=<?= $category['category_id'] ?>"><?= $category['name'] ?></a></li>
-        <?php endforeach; ?>
-    </ul>
+        <h1>Categories</h1>
+        <ul class="category-list">
+            <?php foreach ($categories as $category): ?>
+                <li><a href="category.php?id=<?= $category['category_id'] ?>" 
+                class="category-link"><?= $category['name'] ?></a></li>
+            <?php endforeach; ?>
+        </ul>
 
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div> 
 </body>
 </html>

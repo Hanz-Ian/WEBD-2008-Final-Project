@@ -53,43 +53,34 @@ else {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title><?= htmlspecialchars($category['name']) ?> - Vintage Archives</title>
 </head>
 <body>
-    
-    <!-- Include Header -->
-    <?php include 'header.php' ?>
+    <div id="container">
+        <!-- Include Header -->
+        <?php include 'header.php' ?>
 
-    <h1>Category: <?= $category['name'] ?></h1>
+        <h1>Category: <?= htmlspecialchars($category['name']) ?></h1>
 
-    
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Brand</th>
-            <th>Size</th>
-            <th>Price</th>
-            <th>Actions</th>
-        </tr>
-        <?php foreach ($products as $product): ?>
-            <tr>
-                <td><a href="product.php?id=<?= $product['item_id'] ?>"><?= $product['name'] ?></a></td>
-                <td><?= $product['brand'] ?></td>
-                <td><?= $product['size'] ?></td>
-                <td><?= $product['price'] ?></td>
-                <td>
-                    <!-- If is admin, it's able to edit/delete products -->
-                    <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
-                        <a href="edit_product.php?id=<?= $product['item_id'] ?>">Edit</a>
-                        <a href="delete_product.php?id=<?= $product['item_id'] ?>" 
-                        onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+        <div class="product-grid">
+            <?php foreach ($products as $product): ?>
+                <div class="product-item">
+                    <?php if ($product['image']): ?>
+                        <img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                     <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+                    <h2><a href="product.php?id=<?= htmlspecialchars($product['item_id']) ?>"><?= htmlspecialchars($product['name']) ?></a></h2>
+                    <p>$<?= htmlspecialchars($product['price']) ?></p>
+                    <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
+                        <a href="edit_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" class="admin-link">Edit</a>
+                        <a href="delete_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" class="admin-link">Delete</a>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div>
 </body>
 </html>

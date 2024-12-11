@@ -342,6 +342,31 @@ h1 {
 
 /* ------------------------------------------------- */
 
+/* categoris.php Styles */
+.category-list {
+    list-style-type: none; /* Remove default list style */
+    padding: 0; /* Remove default padding */
+    margin: 20px 0; /* Space above and below the list */
+    text-align: center; /* Center the list */
+}
+
+.category-list li {
+    margin: 10px 0; /* Space between list items */
+}
+
+.category-link {
+    color: #097437; /* Vintage Green */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.2em; /* Set the font size */
+    font-weight: bold; /* Bold text */
+}
+
+.category-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* ------------------------------------------------- */
+
 /* Footer Styles */
 footer {
     margin-top: 20px; /* Space above footer */
