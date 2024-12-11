@@ -1,3 +1,9 @@
+/****************      
+    Name: Hanz Samonte
+    Date:  December 7, 2024
+    Description: Final Project - CSS Styles
+****************/
+
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif; /* Default font for the body */
@@ -126,7 +132,7 @@ nav ul li a:hover {
 
 /* ------------------------------------------------- */
 
-/* Product List Heading Styles */
+/* General H1 Styles */
 h1 {
     font-family: 'Georgia', serif; /* Font for the heading */
     font-size: 2em; /* Font size */
@@ -138,7 +144,7 @@ h1 {
 
 /* ------------------------------------------------- */
 
-/* Product Grid Styles */
+/* index.php Product Grid Styles */
 .product-grid {
     display: flex; /* Use flexbox for layout */
     flex-wrap: wrap; /* Allow items to wrap */
@@ -171,6 +177,92 @@ h1 {
 }
 
 /* ------------------------------------------------- */
+
+/* Add styles for product details */
+.product-details {
+    text-align: center; /* Center the product details */
+    margin-bottom: 20px; /* Space below the product details */
+}
+
+.product-details img.product-image {
+    border: 2px solid #ddd; /* Light gray border */
+    border-radius: 10px; /* Rounded corners */
+    max-width: 100%; /* Ensure image is responsive */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space below the image */
+}
+
+/* ------------------------------------------------- */
+
+/* product.php "Leave a Review" Form */
+.review-form {
+    margin-top: 20px; /* Space above the review form */
+}
+
+.review-form textarea {
+    width: 80%; /* Width textarea */
+    padding: 10px; /* Padding inside the textarea */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+}
+
+.review-form input[type="submit"] {
+    padding: 10px 20px; /* Padding inside the submit button */
+    background-color: #097437; /* Vintage Green */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Set the font size */
+    margin-top: 10px; /* Space above the submit button */
+}
+
+.review-form input[type="submit"]:hover {
+    background-color: #053c1d; /* Darker shade for hover effect */
+}
+
+/* ------------------------------------------------- */
+
+/* product.php Reviews Styles*/
+.reviews {
+    margin-top: 20px; /* Space above the reviews section */
+}
+
+.review-item {
+    background-color: #fff; /* White background for review items */
+    border: 1px solid #ddd; /* Light gray border */
+    padding: 10px; /* Padding inside review items */
+    margin-bottom: 10px; /* Space below each review item */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* ------------------------------------------------- */
+
+
+/* product.php "Show more" hyperlink */
+.show-more-container {
+    text-align: center; /* Center the "Show more" link */
+    margin-top: 20px; /* Space above the "Show more" link */
+}
+
+.show-more-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* ------------------------------------------------- */
+
+/* product.php admin link and hyperlinks */
+.admin-link, .login-link, .show-more-link {
+    color: #097437; /* Vintage Green */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+}
+
+.admin-link:hover, .login-link:hover, .show-more-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
 
 /* Footer Styles */
 footer {
