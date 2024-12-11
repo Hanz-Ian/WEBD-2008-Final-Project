@@ -80,7 +80,7 @@ if (isset($_GET['keyword'])) {
             </div>
         <!-- If there are no products, show "no products" message -->
         <?php else: ?>
-            <h1>No results found for "<?= htmlspecialchars($keyword) ?>".</h1>
+            <h1>No results found</h1>
         <?php endif; ?>
 
         <!-- Include Footer -->
