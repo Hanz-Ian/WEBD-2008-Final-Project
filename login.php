@@ -39,34 +39,36 @@ if ($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Login</title>
 </head>
 <body>
+    <div id="container">
+        <!-- Header -->
+            <?php include 'header.php'; ?>
 
-    <!-- Header -->
-    <?php include 'header.php'; ?>
+        <h1>Login</h1>
+        <!-- Show error message after invalid login -->
+        <?php if (isset($error_message)): ?>
+            <p class="error-message"><?= htmlspecialchars($error_message) ?></p>
+        <?php endif; ?>
 
-    <h1>Login</h1>
-    <!-- Show error message after invalid login -->
-    <?php if (isset($error_message)): ?>
-        <p><?= htmlspecialchars($error_message) ?></p>
-    <?php endif; ?>
-    
-    <form action="login.php" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-            
-        <br><br>
-            
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-            
-        <br><br>
-            
-        <input type="submit" value="Login">
-    </form>
+        <form action="login.php" method="post" class="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+                
+            <br><br>
+                
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+                
+            <br><br>
+                
+            <input type="submit" value="Login">
+        </form>
 
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div>
 </body>
 </html>

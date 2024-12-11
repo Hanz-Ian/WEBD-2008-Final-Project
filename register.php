@@ -48,44 +48,46 @@ if ($_POST && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Register User</title>
 </head>
 <body>
+    <div id="container">
+        <!-- Include Header -->
+        <?php include 'header.php' ?>
 
-    <!-- Include Header -->
-    <?php include 'header.php' ?>
+        <!-- Show error message after invalid registration -->
+        <h1>Register</h1>
+        <?php if (isset($error_message)): ?>
+            <p class="error-message"><?= htmlspecialchars($error_message) ?></p>
+        <?php endif; ?>
 
-    <!-- Show error message after invalid registration -->
-    <h1>Register</h1>
-    <?php if (isset($error_message)): ?>
-        <p><?= htmlspecialchars($error_message) ?></p>
-    <?php endif; ?>
+        <form action="register.php" method="post" class="register-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+                
+            <br><br>
+                
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+                
+            <br><br>
+                
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+                
+            <br><br>
+                
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+                
+            <br><br>
+                
+            <input type="submit" value="Register">
+        </form>
 
-    <form action="register.php" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-            
-        <br><br>
-            
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-            
-        <br><br>
-            
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-            
-        <br><br>
-            
-        <label for="confirm_password">Confirm Password:</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-            
-        <br><br>
-            
-        <input type="submit" value="Register">
-    </form>
-
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div> 
 </body>
 </html>

@@ -263,9 +263,88 @@ h1 {
     text-decoration: underline; /* Underline on hover */
 }
 
+/* ------------------------------------------------- */
+
+/*  login.php Login Form Styles */
+.login-form {
+    margin-top: 20px; /* Space above the login form */
+    text-align: center; /* Center the login form */
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 80%; /* Width of the input fields */
+    padding: 10px; /* Padding inside the input fields */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+    margin-bottom: 10px; /* Space below the input fields */
+}
+
+.login-form input[type="submit"] {
+    padding: 10px 20px; /* Padding inside the submit button */
+    background-color: #097437; /* Vintage Green */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Set the font size */
+    margin-top: 10px; /* Space above the submit button */
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #053c1d; /* Darker shade for hover effect */
+}
+
+/* ------------------------------------------------- */
+
+/* Error Message Styles */
+.error-message {
+    color: red; /* Red text color for error message */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center the error message */
+    margin-top: 10px; /* Space above the error message */
+}
+
+/* ------------------------------------------------- */
+
+/* register.php Styles */
+.register-form {
+    margin-top: 20px; /* Space above the register form */
+    text-align: center; /* Center the register form */
+}
+
+.register-form input[type="email"],
+.register-form input[type="text"],
+.register-form input[type="password"] {
+    width: 80%; /* Width of the input fields */
+    padding: 10px; /* Padding inside the input fields */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+    margin-bottom: 10px; /* Space below the input fields */
+}
+
+.register-form input[type="submit"] {
+    padding: 10px 20px; /* Padding inside the submit button */
+    background-color: #097437; /* Vintage Green */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Set the font size */
+    margin-top: 10px; /* Space above the submit button */
+}
+
+.register-form input[type="submit"]:hover {
+    background-color: #053c1d; /* Darker shade for hover effect */
+}
+
+/* ------------------------------------------------- */
 
 /* Footer Styles */
 footer {
+    margin-top: 20px; /* Space above footer */
     background-color: #097437; /* Vintage Green */
     color: #fff; /* White text color */
     text-align: center; /* Center the text */
