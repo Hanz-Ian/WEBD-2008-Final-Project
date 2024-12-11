@@ -20,24 +20,39 @@ if ($_POST && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_
     // Check if passwords match
     if ($password !== $confirm_password) {
         $error_message = "Passwords do not match.";
-    } else {
-        // Hash the password
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Insert the new user into the database
-        $query = "INSERT INTO users (email, username, password, role) VALUES (:email, :username, :password, 'user')";
+    } 
+    else {
+        // Check if username or email already exists
+        $query = "SELECT COUNT(*) FROM users WHERE email = :email OR username = :username";
         $statement = $db->prepare($query);
         $statement->bindValue(':email', $email);
         $statement->bindValue(':username', $username);
-        $statement->bindValue(':password', $hashed_password);
+        $statement->execute();
+        $user_exists = $statement->fetchColumn();
 
-        // Redirect to the success page if user successfully registered
-        if ($statement->execute()) {
-            $_SESSION['registration_success'] = $username;
-            header('Location: index.php'); 
-            exit();
-        } else {
-            $error_message = "Error: Could not register user.";
+        if ($user_exists) {
+            $error_message = "Username or email already exists.";
+        } 
+        else {
+            // Hash the password
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insert the new user into the database
+            $query = "INSERT INTO users (email, username, password, role) VALUES (:email, :username, :password, 'user')";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':email', $email);
+            $statement->bindValue(':username', $username);
+            $statement->bindValue(':password', $hashed_password);
+
+            // Redirect to the success page if user successfully registered
+            if ($statement->execute()) {
+                $_SESSION['registration_success'] = $username;
+                header('Location: index.php'); 
+                exit();
+            } 
+            else {
+                $error_message = "Error: Could not register user.";
+            }
         }
     }
 }
