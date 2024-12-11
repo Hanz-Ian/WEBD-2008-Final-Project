@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 11, 2024 at 04:02 AM
+-- Generation Time: Dec 11, 2024 at 05:10 AM
 -- Server version: 8.0.39
--- PHP Version: 8.2.22
+-- PHP Version: 8.2.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `category_id` int NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -50,13 +50,13 @@ INSERT INTO `categories` (`category_id`, `name`) VALUES
 CREATE TABLE `items` (
   `item_id` int NOT NULL,
   `category_id` int NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `brand` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `size` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `brand` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `size` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `style` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `style` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -65,9 +65,13 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`item_id`, `category_id`, `name`, `brand`, `description`, `size`, `price`, `style`, `image`, `created_at`) VALUES
-(1, 2, 'Full Zip Windbreaker Lightweight', 'Reebok', 'Reebok Men&rsquo;s Jacket Large Full Zip Windbreaker Lightweight 90s Y2K Retro Vtg', 'Large', 75.00, '90&#039;s ', 'images.jpg', '2024-12-10 07:08:57'),
+(1, 2, 'Full Zip Windbreaker Lightweight', 'Reebok', 'Reebok Mens Jacket Large Full Zip Windbreaker Lightweight 90s Y2K Retro Vtg', 'Large', 75.00, '90s', 'images.jpg', '2024-12-10 07:08:57'),
 (2, 1, 'Oversized Graphic Tee', 'DAZZLZZAD', 'DAZZLZZAD Mens Oversized Graphic Tees Y2k Baggy Shirts Vintage Racing Tee Unisex Streetwear Tshirt Patchwork Polo Tee', 'Medium', 27.00, 'Racing', '6145o5gsEUL._AC_SX679_.jpg', '2024-12-10 07:26:41'),
-(3, 3, 'Y2K Jeans Men', 'Y2K Wave', 'Add a touch of vintage to your outfits with our Y2K Jeans Men.\r\nOur Y2K Men&#039;s Jeans, made from quality material, feature a mid-waist baggy cut, sewn-on black sparkles, 4 pockets', 'Medium', 70.00, 'Y2K', '71RzaJEFdIL._AC_UY1000_.jpg', '2024-12-11 02:55:02');
+(3, 3, 'Y2K Jeans Men', 'Y2K Wave', 'Add a touch of vintage to your outfits with our Y2K Jeans Men.\r\nOur Y2K Mens Jeans, made from quality material, feature a mid-waist baggy cut, sewn-on black sparkles, 4 pockets', 'Medium', 70.00, 'Y2K', '71RzaJEFdIL._AC_UY1000_.jpg', '2024-12-11 02:55:02'),
+(4, 1, 'Atomic Cup Classic Water', 'FromAnother', 'Vintage Atomic Cup Classic Water Racing T-Shirt', 'Extra Large', 45.00, 'Racing', 'atomiccup.jpg', '2024-12-11 04:57:52'),
+(5, 1, 'Thrashed and Built To Take The Heat GM', 'RagStock', 'Vintage Thrashed &quot;Built To Take The Heat&quot; GM Racing T-Shirt', 'Extra Large', 45.00, 'Racing', 'vintage-t-shirts-9511-2__33647.jpg', '2024-12-11 05:02:14'),
+(6, 3, 'Balloon Pants', 'ZARA', 'Zaras Balloon Fit Jeans for Men', 'Large', 80.00, 'Baggy', '05575301802-p.jpg', '2024-12-11 05:06:40'),
+(7, 3, 'Baggy Fit Jeans', 'ZARA', 'Zaras Baggy Fit Jeans for Men', 'Medium', 80.00, 'Baggy', '08062380800-e2.jpg', '2024-12-11 05:07:06');
 
 -- --------------------------------------------------------
 
@@ -79,8 +83,8 @@ CREATE TABLE `reviews` (
   `review_id` int NOT NULL,
   `item_id` int NOT NULL,
   `user_id` int DEFAULT NULL,
-  `name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `review` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `review` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -103,10 +107,10 @@ INSERT INTO `reviews` (`review_id`, `item_id`, `user_id`, `name`, `review`, `cre
 
 CREATE TABLE `users` (
   `user_id` int NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `username` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `role` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `role` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -164,7 +168,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `item_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `reviews`
