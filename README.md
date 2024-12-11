@@ -8,7 +8,8 @@ the contents provided in the website. Now, this became an ecommerce-turned archi
 aspects of the website (errors or extra implementations for example) but I plan to refine it as I work through my journey into coding!
 
 # Images
-<img src="images/Vintage Archives HomePage.png" alt="Vintage Archives Homepage>
+
+<img src="images/Vintage Archives HomePage.png" alt="Vintage Archives Homepage">
 
 <img src="images/Vintage Archives Categories.png" alt="Vintage Archives Categories">
 
