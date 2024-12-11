@@ -12,7 +12,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="categories.php">Category</a></li>
-            <!-- If user is admin, show admin priviliges -->
+            <!-- If user is admin, show admin privileges -->
             <?php if (isset($_SESSION['user_id'])): ?>
                 <?php if ($_SESSION['role'] === 'admin'): ?>
                     <li class="dropdown">

@@ -1,0 +1,183 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif; /* Default font for the body */
+    background-color: #f5f5dc; /* Light beige background */
+    color: #333; /* Dark text color for readability */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+/* ------------------------------------------------- */
+
+/* Body Container */
+#container {
+    width: 65%; /* Width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+    background-color: #fff; /* White background for the content area */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* ------------------------------------------------- */
+
+/* Header Styles */
+header {
+    background-color: #097437; /* Vintage Green */
+    color: #fff; /* White text color */
+    padding: 20px 0; /* Padding for more space */
+    text-align: center; /* Center the text */
+    font-family: 'Georgia', serif; /* Font for the header */
+}
+
+header h1 {
+    margin: 0; /* Remove default margin */
+    font-size: 2.5em; /* Larger font size for the header */
+}
+
+/* ------------------------------------------------- */
+
+/* Search Bar Styles */
+header form {
+    margin-top: 10px; /* Space between the header and search bar */
+    display: flex; /* Flexbox for layout */
+    justify-content: center; /* Center the search bar */
+    gap: 10px; /* Space between the search input and search button */
+}
+
+header form input[type="text"] {
+    padding: 10px; /* Padding inside the text input */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    width: 300px; /* Width of the text input */
+    font-size: 1em; /* Font size */
+}
+
+header form input[type="submit"] {
+    padding: 10px 20px; /* Padding inside the submit button */
+    background-color: #097437; /* Vintage Green */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Set the font size */
+}
+
+header form input[type="submit"]:hover {
+    background-color: #053c1d; /* Darker shade for hover effect */
+}
+
+/* ------------------------------------------------- */
+
+/* Navigation Styles */
+nav ul {
+    list-style-type: none; /* Remove default list style */
+    padding: 0; /* Remove default padding */
+    margin: 20px 0 0 0; /* Space between the search bar and navigation */
+    text-align: center; /* Center the navigation texts */
+}
+
+nav ul li {
+    display: inline; /* Display list items inline */
+    margin: 0 10px; /* Space between navigation items */
+}
+
+nav ul li a {
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* ------------------------------------------------- */
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative; /* Position relative for dropdown */
+    display: inline-block; /* Display inline-block for dropdown */
+}
+
+.dropdown-content {
+    display: none; /* Hide dropdown content by default */
+    position: absolute; /* Position absolute for dropdown content */
+    background-color: #097437; /* Same color as the header */
+    min-width: 100px; /* Minimum width for dropdown content */
+}
+
+.dropdown-content a {
+    color: #fff; /* White text color */
+    padding: 12px 16px; /* Padding inside dropdown links */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Display block for dropdown links */
+    text-align: left; /* Left align text */
+}
+
+.dropdown-content a:hover {
+    background-color: #053c1d; /* Darker shade for hover effect */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown content on hover */
+}
+
+.dropdown:hover .dropbtn {
+    text-decoration: underline; /* Underline dropdown button on hover */
+}
+
+/* ------------------------------------------------- */
+
+/* Product List Heading Styles */
+h1 {
+    font-family: 'Georgia', serif; /* Font for the heading */
+    font-size: 2em; /* Font size */
+    color: #dec3c3; /* Text color */
+    text-align: center; /* Center the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000; /* Outline effect */
+}
+
+/* ------------------------------------------------- */
+
+/* Product Grid Styles */
+.product-grid {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap */
+    gap: 20px; /* Space between product items */
+    justify-content: center; /* Center the product grid */
+}
+
+.product-item {
+    background-color: #fff; /* White background for product items */
+    border: 1px solid #ddd; /* Light gray border */
+    padding: 10px; /* Padding inside product items */
+    text-align: center; /* Center the text */
+    width: 150px; /* Width of product items */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.product-item img {
+    max-width: 100%; /* Ensure images are responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.product-item h2 {
+    font-size: 1.2em; /* Set the font size */
+    margin: 10px 0; /* Space above and below the heading */
+}
+
+.product-item p {
+    font-size: 1em; /* Set the font size */
+    color: #097437; /* Vintage Green */
+}
+
+/* ------------------------------------------------- */
+
+/* Footer Styles */
+footer {
+    background-color: #097437; /* Vintage Green */
+    color: #fff; /* White text color */
+    text-align: center; /* Center the text */
+    padding: 10px 0; /* Padding inside the footer */
+    width: 100%; /* Full width footer */
+    bottom: 0; /* Stick to the bottom */
+}

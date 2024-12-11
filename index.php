@@ -40,57 +40,48 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
     <title>Vintage Archives</title>
 </head>
 <body>
-    
-    <!-- Include the Header -->
-     <?php include 'header.php' ?>
+    <div id="container">
+        <!-- Include the Header -->
+        <?php include 'header.php' ?>
 
-    <!-- If a login was successful prior, it'll redirect to the page -->
-    <?php if (isset($_SESSION['login_success'])): ?>
-        <p><?= $_SESSION['login_success'] ?></p>
-        <?php unset($_SESSION['login_success']); // Clear the success message ?>
-    <?php endif; ?>
+        <!-- If a login was successful prior, it'll redirect to the page -->
+        <?php if (isset($_SESSION['login_success'])): ?>
+            <p><?= $_SESSION['login_success'] ?></p>
+            <?php unset($_SESSION['login_success']); // Clear the success message ?>
+        <?php endif; ?>
 
-    <!-- If deleting a post was successful prior, it'll redirect to the page -->
-    <?php if (isset($_SESSION['delete_success'])): ?>
-        <p><?= $_SESSION['delete_success'] ?></p>
-        <?php unset($_SESSION['delete_success']); // Clear the success message ?>
-    <?php endif; ?>
+        <!-- If deleting a post was successful prior, it'll redirect to the page -->
+        <?php if (isset($_SESSION['delete_success'])): ?>
+            <p><?= $_SESSION['delete_success'] ?></p>
+            <?php unset($_SESSION['delete_success']); // Clear the success message ?>
+        <?php endif; ?>
 
-    <!-- If updating a post was successful prior, it'll redirect to the page -->
-    <?php if (isset($_SESSION['update_success'])): ?>
-        <p><?= htmlspecialchars($_SESSION['update_success']) ?></p>
-        <?php unset($_SESSION['update_success']); // Clear the success message ?>
-    <?php endif; ?>
-    
-    <!-- Showing list of Products -->
-    <h1>Product List</h1>
-    <table>
-        <tr>
-            <th><a href="?sort=name&direction=<?= $new_sort_direction ?>">Name</a></th>
-            <th>Brand</th>           
-            <th>Size</th>
-            <th>Price</th>
-            <th>Category</th>
-        </tr>
-        <?php foreach ($products as $product): ?>
-            <tr>
-            <td><a href="product.php?id=<?= htmlspecialchars($product['item_id']) ?>"><?= htmlspecialchars($product['name']) ?></a></td>
-                <td><?= htmlspecialchars($product['brand']) ?></td>             
-                <td><?= htmlspecialchars($product['size']) ?></td>
-                <td><?= htmlspecialchars($product['price']) ?></td>
-                <td><?= htmlspecialchars($product['category_name']) ?></td>
-                <td>
-                    <!-- If is admin, it's able to edit/delete products -->
+        <!-- If updating a post was successful prior, it'll redirect to the page -->
+        <?php if (isset($_SESSION['update_success'])): ?>
+            <p><?= htmlspecialchars($_SESSION['update_success']) ?></p>
+            <?php unset($_SESSION['update_success']); // Clear the success message ?>
+        <?php endif; ?>
+        
+        <!-- Showing list of Products -->
+        <h1>Product List</h1>
+        <div class="product-grid">
+            <?php foreach ($products as $product): ?>
+                <div class="product-item">
+                    <?php if ($product['image']): ?>
+                        <img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                    <?php endif; ?>
+                    <h2><a href="product.php?id=<?= htmlspecialchars($product['item_id']) ?>"><?= htmlspecialchars($product['name']) ?></a></h2>
+                    <p>$<?= htmlspecialchars($product['price']) ?></p>
                     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
                         <a href="edit_product.php?id=<?= $product['item_id'] ?>">Edit</a>
                         <a href="delete_product.php?id=<?= $product['item_id'] ?>">Delete</a>
                     <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div>
 </body>
 </html>
