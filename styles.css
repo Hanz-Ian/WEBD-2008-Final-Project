@@ -298,16 +298,6 @@ h1 {
 
 /* ------------------------------------------------- */
 
-/* Error Message Styles */
-.error-message {
-    color: red; /* Red text color for error message */
-    font-weight: bold; /* Bold text */
-    text-align: center; /* Center the error message */
-    margin-top: 10px; /* Space above the error message */
-}
-
-/* ------------------------------------------------- */
-
 /* register.php Styles */
 .register-form {
     margin-top: 20px; /* Space above the register form */
@@ -363,6 +353,86 @@ h1 {
 
 .category-link:hover {
     text-decoration: underline; /* Underline on hover */
+}
+
+/* ------------------------------------------------- */
+
+/* create_product.php, create_category.php,
+edit_product.php and edit_category.php Styles */
+.create-form {
+    margin-top: 20px; /* Space above the create form */
+    text-align: center; /* Center the create form */
+}
+
+.create-form input[type="text"],
+.create-form input[type="number"],
+.create-form input[type="file"],
+.create-form select,
+.create-form textarea {
+    width: 80%; /* Width of the input fields */
+    padding: 10px; /* Padding inside the input fields */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+    margin-bottom: 10px; /* Space below the input fields */
+}
+
+.create-form input[type="submit"] {
+    padding: 10px 20px; /* Padding inside the submit button */
+    background-color: #097437; /* Vintage Green */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Set the font size */
+    margin-top: 10px; /* Space above the submit button */
+}
+
+.create-form input[type="submit"]:hover {
+    background-color: #053c1d; /* Darker shade for hover effect */
+}
+
+/* ------------------------------------------------- */
+
+/* delete_product.php Styles */
+.delete-form {
+    margin-top: 20px; /* Space above the delete form */
+    text-align: center; /* Center the delete form */
+}
+
+.delete-form input[type="submit"] {
+    padding: 10px 20px; /* Padding inside the submit button */
+    background-color: #d9534f; /* Bootstrap Danger color */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Set the font size */
+    margin-top: 10px; /* Space above the submit button */
+}
+
+.delete-form input[type="submit"]:hover {
+    background-color: #c9302c; /* Darker shade for hover effect */
+}
+
+/* ------------------------------------------------- */
+
+/* Success Messages Styles */
+.success-message {
+    color: #097437; /* Vintage Green */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center the text */
+    margin-top: 10px; /* Space above the message */
+}
+
+/* ------------------------------------------------- */
+
+/* Error Message Styles */
+.error-message {
+    color: red; /* Red text color for error message */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center the error message */
+    margin-top: 10px; /* Space above the error message */
 }
 
 /* ------------------------------------------------- */

@@ -31,8 +31,13 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
         <h1>Categories</h1>
         <ul class="category-list">
             <?php foreach ($categories as $category): ?>
-                <li><a href="category.php?id=<?= $category['category_id'] ?>" 
-                class="category-link"><?= $category['name'] ?></a></li>
+                <li>
+                    <a href="category.php?id=<?= htmlspecialchars($category['category_id']) ?>" 
+                    class="category-link"><?= htmlspecialchars($category['name']) ?></a>
+                    <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
+                        <a href="edit_category.php?id=<?= htmlspecialchars($category['category_id']) ?>" class="admin-link">Edit</a>
+                    <?php endif; ?>
+                </li>
             <?php endforeach; ?>
         </ul>
 

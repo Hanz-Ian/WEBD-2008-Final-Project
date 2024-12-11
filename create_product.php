@@ -113,63 +113,65 @@ if ($_POST && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Create New Product</title>
 </head>
 <body>
-    <!-- Include Header -->
-    <?php include 'header.php' ?>
-    
-    <h1>Create New Product</h1>
-    <form action="create_product.php" method="post" enctype="multipart/form-data">
+<div id="container">
+        <!-- Include Header -->
+        <?php include 'header.php' ?>
 
-        <label for="image">Image:</label>
-        <input type="file" id="image" name="image">
+        <h1>Create New Product</h1>
+        <form action="create_product.php" method="post" enctype="multipart/form-data" class="create-form">
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+                
+            <br><br>
+                
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+                
+            <br><br>
+                
+            <label for="brand">Brand:</label>
+            <input type="text" id="brand" name="brand" required>
+                
+            <br><br>
+                
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+                
+            <br><br>
+                
+            <label for="size">Size:</label>
+            <input type="text" id="size" name="size" required>
+                
+            <br><br>
+                
+            <label for="price">Price:</label>
+            <input type="number" step="0.01" id="price" name="price" required>
+                
+            <br><br>
+                
+            <label for="style">Style:</label>
+            <input type="text" id="style" name="style" required>
+                
+            <br><br>
+                
+            <label for="category_id">Category:</label>
+            <select id="category_id" name="category_id" required>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= htmlspecialchars($category['category_id']) ?>"><?= htmlspecialchars($category['name']) ?></option>
+                <?php endforeach; ?>
+            </select>
+                
+            <br><br>
+                
+            <input type="submit" value="Create Product">
+        </form>
 
-        <br><br>
-
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-            
-        <br><br>
-            
-        <label for="brand">Brand:</label>
-        <input type="text" id="brand" name="brand" required>
-            
-        <br><br>
-            
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
-            
-        <br><br>
-            
-        <label for="size">Size:</label>
-        <input type="text" id="size" name="size" required>
-            
-        <br><br>
-            
-        <label for="price">Price:</label>
-        <input type="number" step="0.01" id="price" name="price" required>
-            
-        <br><br>
-            
-        <label for="style">Style:</label>
-        <input type="text" id="style" name="style" required>
-            
-        <br><br>
-            
-        <label for="category_id">Category:</label>
-        <select id="category_id" name="category_id" required>
-            <?php foreach ($categories as $category): ?>
-                <option value="<?= htmlspecialchars($category['category_id']) ?>"><?= htmlspecialchars($category['name']) ?></option>
-            <?php endforeach; ?>
-        </select>
-            
-        <br><br>
-            
-        <input type="submit" value="Create Product">
-    </form>
-
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div>
 </body>
 </html>

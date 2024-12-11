@@ -46,19 +46,19 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
 
         <!-- If a login was successful prior, it'll redirect to the page -->
         <?php if (isset($_SESSION['login_success'])): ?>
-            <p><?= $_SESSION['login_success'] ?></p>
+            <p class="success-message"><?= $_SESSION['login_success'] ?></p>
             <?php unset($_SESSION['login_success']); // Clear the success message ?>
         <?php endif; ?>
 
         <!-- If deleting a post was successful prior, it'll redirect to the page -->
         <?php if (isset($_SESSION['delete_success'])): ?>
-            <p><?= $_SESSION['delete_success'] ?></p>
+            <p class="success-message"><?= $_SESSION['delete_success'] ?></p>
             <?php unset($_SESSION['delete_success']); // Clear the success message ?>
         <?php endif; ?>
 
         <!-- If updating a post was successful prior, it'll redirect to the page -->
         <?php if (isset($_SESSION['update_success'])): ?>
-            <p><?= htmlspecialchars($_SESSION['update_success']) ?></p>
+            <p class="success-message"><?= htmlspecialchars($_SESSION['update_success']) ?></p>
             <?php unset($_SESSION['update_success']); // Clear the success message ?>
         <?php endif; ?>
         

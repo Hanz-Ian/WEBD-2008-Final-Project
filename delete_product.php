@@ -65,40 +65,46 @@ elseif (isset($_POST['confirm']) && $_POST['confirm'] === 'no') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Delete <?= "{$product['name']}" ?></title>
 </head>
 <body>
-    <!-- Include Header -->
-    <?php include 'header.php' ?>
-    
-    <h1>Delete Product</h1>
-    <!-- Show image if it exists within the item -->
-    <?php if ($product['image']): ?>
-        <p><strong>Image:</strong><br><img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" width="100"></p>
-    <?php endif; ?>
-    
-    <p>Are you sure you want to delete the following product?</p>
-    <p><strong>Name:</strong> <?= htmlspecialchars($product['name']) ?></p>
-    <p><strong>Brand:</strong> <?= htmlspecialchars($product['brand']) ?></p>
-    <p><strong>Description:</strong> <?= htmlspecialchars($product['description']) ?></p>
-    <p><strong>Size:</strong> <?= htmlspecialchars($product['size']) ?></p>
-    <p><strong>Price:</strong> <?= htmlspecialchars($product['price']) ?></p>
-    <p><strong>Style:</strong> <?= htmlspecialchars($product['style']) ?></p>
-    <p><strong>Category:</strong> <?= htmlspecialchars($product['category_name']) ?></p>
+<div id="container">
+        <!-- Include Header -->
+        <?php include 'header.php' ?>
+        
+        <h1>Delete Product</h1>
+        <div class="product-details">
+            <!-- Show image if it exists within the item -->
+            <?php if ($product['image']): ?>
+                <p><strong>Image:</strong><br><img src="uploads/<?= htmlspecialchars($product['image']) ?>" 
+                alt="<?= htmlspecialchars($product['name']) ?>" class="product-image"></p>
+            <?php endif; ?>
+            
+            <p>Are you sure you want to delete the following product?</p>
+            <p><strong>Name:</strong> <?= htmlspecialchars($product['name']) ?></p>
+            <p><strong>Brand:</strong> <?= htmlspecialchars($product['brand']) ?></p>
+            <p><strong>Description:</strong> <?= htmlspecialchars($product['description']) ?></p>
+            <p><strong>Size:</strong> <?= htmlspecialchars($product['size']) ?></p>
+            <p><strong>Price:</strong> $<?= htmlspecialchars($product['price']) ?></p>
+            <p><strong>Style:</strong> <?= htmlspecialchars($product['style']) ?></p>
+            <p><strong>Category:</strong> <?= htmlspecialchars($product['category_name']) ?></p>
+        </div>
 
-    <!-- "Yes" form -->
-    <form action="delete_product.php?id=<?= $product['item_id'] ?>" method="post">
-        <input type="hidden" name="confirm" value="yes">
-        <input type="submit" value="Yes, delete it">
-    </form>
+        <!-- "Yes" form -->
+        <form action="delete_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" method="post" class="delete-form">
+            <input type="hidden" name="confirm" value="yes">
+            <input type="submit" value="Yes, delete it">
+        </form>
 
-    <!-- "No" form -->
-    <form action="delete_product.php?id=<?= $product['item_id'] ?>" method="post">
-        <input type="hidden" name="confirm" value="no">
-        <input type="submit" value="No, go back">
-    </form>
+        <!-- "No" form -->
+        <form action="delete_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" method="post" class="delete-form">
+            <input type="hidden" name="confirm" value="no">
+            <input type="submit" value="No, go back">
+        </form>
 
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div>
 </body>
 </html>

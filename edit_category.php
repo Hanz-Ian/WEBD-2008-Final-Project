@@ -66,27 +66,30 @@ else {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Edit <?= "{$category['name']}" ?></title>
 </head>
 <body>
-    <!-- Include Header -->
-    <?php include 'header.php' ?>
-    
-    <h1>Edit Category</h1>
-    <?php if ($category_id): ?>
-        <form action="edit_category.php?id=<?= $category['category_id'] ?>" method="post">
-            <input type="hidden" name="category_id" value="<?= htmlspecialchars($category['category_id']) ?>">
+<div id="container">
+        <!-- Include Header -->
+        <?php include 'header.php' ?>
+        
+        <h1>Edit Category</h1>
+        <?php if ($category_id): ?>
+            <form action="edit_category.php?id=<?= htmlspecialchars($category['category_id']) ?>" method="post" class="create-form">
+                <input type="hidden" name="category_id" value="<?= htmlspecialchars($category['category_id']) ?>">
 
-            <label for="name">Category Name:</label>
-            <input type="text" id="name" name="name" value="<?= htmlspecialchars($category['name']) ?>" required>
-                    
-            <br><br>
-                    
-            <input type="submit" value="Update Category">
-        </form>
-    <?php endif; ?>
+                <label for="name">Category Name:</label>
+                <input type="text" id="name" name="name" value="<?= htmlspecialchars($category['name']) ?>" required>
+                        
+                <br><br>
+                        
+                <input type="submit" value="Update Category">
+            </form>
+        <?php endif; ?>
 
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div>
 </body>
 </html>

@@ -144,80 +144,80 @@ else {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Edit <?= htmlspecialchars($product['name']) ?></title>
 </head>
 <body>
 
-    <!-- Include Header -->
-    <?php include 'header.php' ?>
+<div id="container">
+        <!-- Include Header -->
+        <?php include 'header.php' ?>
 
-    <h1>Edit Product</h1>
-    <?php if ($id): ?>
-        <form action="edit_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" method="post" enctype="multipart/form-data">
+        <h1>Edit Product</h1>
+        <?php if ($id): ?>
+            <form action="edit_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" method="post" enctype="multipart/form-data" class="create-form">
+                <label for="image">Image:</label>
+                <?php if ($product['image']): ?>
+                    <img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="product-image">
+                    <br><br>
+                    <label for="delete_image">Delete Image:</label>
+                    <input type="checkbox" id="delete_image" name="delete_image" value="yes">
+                <?php else: ?>
+                    <p>No image available</p>
+                    <label for="image">Choose New Image:</label>
+                    <input type="file" id="image" name="image">
+                <?php endif; ?>
 
-            <label for="image">Image:</label>
-            <?php if ($product['image']): ?>
-                <img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                 <br><br>
-                <label for="delete_image">Delete Image:</label>
-                <input type="checkbox" id="delete_image" name="delete_image" value="yes">
-            <?php else: ?>
-                <p>No image available</p>
-                <label for="image">Choose New Image:</label>
-                <input type="file" id="image" name="image">
-            <?php endif; ?>
 
-            <br><br>
+                <input type="hidden" name="id" value="<?= htmlspecialchars($product['item_id']) ?>">
+                <input type="hidden" name="existing_image" value="<?= htmlspecialchars($product['image']) ?>">
 
-            <input type="hidden" name="id" value="<?= htmlspecialchars($product['item_id']) ?>">
-            <input type="hidden" name="existing_image" value="<?= htmlspecialchars($product['image']) ?>">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="<?= htmlspecialchars($product['name']) ?>" required>
+                    
+                <br><br>
+                    
+                <label for="brand">Brand:</label>
+                <input type="text" id="brand" name="brand" value="<?= htmlspecialchars($product['brand']) ?>" required>
+                    
+                <br><br>
+                    
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required><?= htmlspecialchars($product['description']) ?></textarea>
+                    
+                <br><br>
+                    
+                <label for="size">Size:</label>
+                <input type="text" id="size" name="size" value="<?= htmlspecialchars($product['size']) ?>" required>
+                    
+                <br><br>
+                    
+                <label for="price">Price:</label>
+                <input type="number" step="0.01" id="price" name="price" value="<?= htmlspecialchars($product['price']) ?>" required>
+                    
+                <br><br>
+                    
+                <label for="style">Style:</label>
+                <input type="text" id="style" name="style" value="<?= htmlspecialchars($product['style']) ?>" required>
+                    
+                <br><br>
+                    
+                <label for="category_id">Category:</label>
+                <select id="category_id" name="category_id" required>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?= htmlspecialchars($category['category_id']) ?>" <?= $product['category_id'] == $category['category_id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+                    
+                <br><br>
+                    
+                <input type="submit" value="Update Product">
+            </form>
+        <?php endif; ?>
 
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<?= htmlspecialchars($product['name']) ?>" required>
-                
-            <br><br>
-                
-            <label for="brand">Brand:</label>
-            <input type="text" id="brand" name="brand" value="<?= htmlspecialchars($product['brand']) ?>" required>
-                
-            <br><br>
-                
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required><?= htmlspecialchars($product['description']) ?></textarea>
-                
-            <br><br>
-                
-            <label for="size">Size:</label>
-            <input type="text" id="size" name="size" value="<?= htmlspecialchars($product['size']) ?>" required>
-                
-            <br><br>
-                
-            <label for="price">Price:</label>
-            <input type="number" step="0.01" id="price" name="price" value="<?= htmlspecialchars($product['price']) ?>" required>
-                
-            <br><br>
-                
-            <label for="style">Style:</label>
-            <input type="text" id="style" name="style" value="<?= htmlspecialchars($product['style']) ?>" required>
-                
-            <br><br>
-                
-            <label for="category_id">Category:</label>
-            <select id="category_id" name="category_id" required>
-                <?php foreach ($categories as $category): ?>
-                    <option value="<?= htmlspecialchars($category['category_id']) ?>" 
-                    <?= $product['category_id'] == $category['category_id'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($category['name']) ?></option>
-                <?php endforeach; ?>
-            </select>
-                
-            <br><br>
-                
-            <input type="submit" value="Update Product">
-        </form>
-    <?php endif; ?>
-
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div>
 </body>
 </html>

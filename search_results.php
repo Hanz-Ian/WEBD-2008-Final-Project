@@ -48,26 +48,39 @@ if (isset($_GET['keyword'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Search Results - Vintage Archives</title>
 </head>
 <body>
-    <!-- Include Header -->
-    <?php include 'header.php' ?>
+<div id="container">
+        <!-- Include Header -->
+        <?php include 'header.php' ?>
 
-    <h1>Search Results for "<?= htmlspecialchars($keyword) ?>" in <?= htmlspecialchars($category_name) ?></h1>
-    <!-- If there are products, show -->
-    <?php if ($products): ?>
-        <ul>
-            <?php foreach ($products as $product): ?>
-                <li><a href="product.php?id=<?= htmlspecialchars($product['item_id']) ?>"><?= htmlspecialchars($product['name']) ?></a></li>
-            <?php endforeach; ?>
-        </ul>
-    <!-- If there are no products, show "no products" message -->
-    <?php else: ?>
-        <p>No results found for "<?= htmlspecialchars($keyword) ?>".</p>
-    <?php endif; ?>
+        <h1>Search Results for "<?= htmlspecialchars($keyword) ?>" in <?= htmlspecialchars($category_name) ?></h1>
+        <!-- If there are products, show -->
+        <?php if ($products): ?>
+            <div class="product-grid">
+                <?php foreach ($products as $product): ?>
+                    <div class="product-item">
+                        <?php if ($product['image']): ?>
+                            <img src="uploads/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                        <?php endif; ?>
+                        <h2><a href="product.php?id=<?= htmlspecialchars($product['item_id']) ?>"><?= htmlspecialchars($product['name']) ?></a></h2>
+                        <p>$<?= htmlspecialchars($product['price']) ?></p>
+                        <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
+                            <a href="edit_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" class="admin-link">Edit</a>
+                            <a href="delete_product.php?id=<?= htmlspecialchars($product['item_id']) ?>" class="admin-link">Delete</a>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <!-- If there are no products, show "no products" message -->
+        <?php else: ?>
+            <h1>No results found for "<?= htmlspecialchars($keyword) ?>".</h1>
+        <?php endif; ?>
 
-    <!-- Include Footer -->
-    <?php include 'footer.php' ?>
+        <!-- Include Footer -->
+        <?php include 'footer.php' ?>
+    </div>
 </body>
 </html>
