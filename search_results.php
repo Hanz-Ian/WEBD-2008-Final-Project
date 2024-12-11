@@ -57,6 +57,10 @@ if (isset($_GET['keyword'])) {
         <?php include 'header.php' ?>
 
         <h1>Search Results for "<?= htmlspecialchars($keyword) ?>" in <?= htmlspecialchars($category_name) ?></h1>
+
+        <!-- Include Sorting Navigation -->
+        <?php include 'sort_navigation.php' ?>
+
         <!-- If there are products, show -->
         <?php if ($products): ?>
             <div class="product-grid">

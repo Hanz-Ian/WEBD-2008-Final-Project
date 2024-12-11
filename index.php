@@ -64,6 +64,10 @@ $new_sort_direction = $sort_direction === 'ASC' ? 'desc' : 'asc';
         
         <!-- Showing list of Products -->
         <h1>Product List</h1>
+
+        <!-- Include Sorting Navigation -->
+        <?php include 'sort_navigation.php' ?>
+
         <div class="product-grid">
             <?php foreach ($products as $product): ?>
                 <div class="product-item">

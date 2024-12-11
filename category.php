@@ -63,6 +63,9 @@ else {
 
         <h1>Category: <?= htmlspecialchars($category['name']) ?></h1>
 
+        <!-- Include Sorting Navigation -->
+        <?php include 'sort_navigation.php' ?>
+
         <div class="product-grid">
             <?php foreach ($products as $product): ?>
                 <div class="product-item">

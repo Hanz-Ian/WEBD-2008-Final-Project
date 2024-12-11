@@ -178,7 +178,35 @@ h1 {
 
 /* ------------------------------------------------- */
 
-/* Add styles for product details */
+/* sort_navigation.php Styles */
+.sort-nav {
+    text-align: center; /* Center the navigation */
+    margin-bottom: 20px; /* Space below the navigation */
+}
+
+.sort-nav ul {
+    list-style-type: none; /* Remove default list style */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.sort-nav ul li {
+    display: inline; /* Display list items inline */
+    margin: 0 10px; /* Space between navigation items */
+}
+
+.sort-link {
+    color: #097437; /* Vintage Green */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.2em; /* Set the font size */
+    font-weight: bold; /* Bold text */
+}
+
+.sort-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* product.php product details */
 .product-details {
     text-align: center; /* Center the product details */
     margin-bottom: 20px; /* Space below the product details */
